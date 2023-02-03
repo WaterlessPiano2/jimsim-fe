@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTable } from 'react-table'
- 
+import styles from '@/styles/Home.module.css'
+
  function Table() {
    const data = React.useMemo(
      () => [
@@ -44,18 +45,20 @@ import { useTable } from 'react-table'
  
   
    return (
-     <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-      <thead>
+     <table {...getTableProps()} className={styles.table}>
+      <thead className={styles.header}>
         {headerGroups.map((headerGroup) => {
           const { key, ...restHeaderGroupProps } =
             headerGroup.getHeaderGroupProps();
           return (
-            <tr key={key} {...restHeaderGroupProps}>
+            <tr  className={styles.headerRow} key={key} {...restHeaderGroupProps}>
               {headerGroup.headers.map((column) => {
                 const { key, ...restColumn } = column.getHeaderProps();
                 return (
                   <th key={key} {...restColumn}>
-                    {column.render("Header")}
+                    <p className={styles.headerCell}>
+                     {column.render("Header")}
+                    </p> 
                   </th>
                 );
               })}
@@ -63,17 +66,20 @@ import { useTable } from 'react-table'
           );
         })}
       </thead>
-      <tbody {...getTableBodyProps}>
+      <tbody  className={styles.body} {...getTableBodyProps}>
         {rows.map((row) => {
           prepareRow(row);
           const { key, ...restRowProps } = row.getRowProps();
           return (
-            <tr key={key} {...restRowProps}>
+            <tr className={styles.card}
+            key={key} {...restRowProps}>
               {row.cells.map((cell) => {
                 const { key, ...restCellProps } = cell.getCellProps();
                 return (
                   <td key={key} {...restCellProps}>
-                    {cell.render("Cell")}
+                  <p>
+                      {cell.render("Cell")}
+                    </p>
                   </td>
                 );
               })}
