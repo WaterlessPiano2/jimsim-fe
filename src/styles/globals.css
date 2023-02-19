@@ -105,3 +105,34 @@ a {
     color-scheme: dark;
   }
 }
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: auto;
+  margin: 0 auto; 
+  width: 90%;
+}
+tbody{
+  box-shadow: 0 0 0 0.5px gray;
+  border-radius: 5px;
+  perspective: 1px;
+  overflow: hidden;
+}
+
+th,
+td {
+  margin: 0;
+  padding: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+tr {  
+  border-bottom: 1px solid gray;
+}
+
+tr:last-child{  
+  border-bottom: 0px;
+}
