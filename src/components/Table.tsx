@@ -7,30 +7,51 @@ function Table() {
   const data = React.useMemo(
     () => [
       {
-        col1: {
+        platform: {
           name: "SOL",
           subName: "Staking",
           logoOne: "solana.svg",
         },
-        col2: "World",
+        APY: "%3.19",
+        APYHistory: "---",
+        TVL: "$0.38b",
+        TVLHistory: "---",
+        risk: 100,
+        age: "30 days",
+        TR: "SOL",
+        type: "Strategy Vaults",
       },
       {
-        col1: {
+        platform: {
           name: "SOL",
           subName: "Orca",
           logoOne: "solana.svg",
           logoTwo: "orca.svg",
         },
-        col2: "rocks",
+        APY: "%3.19",
+        APYHistory: "---",
+        TVL: "$0.38b",
+        TVLHistory: "---",
+        risk: 100,
+        age: "30 days",
+        TR: "SOL",
+        type: "Strategy Vaults",
       },
       {
-        col1: {
+        platform: {
           name: "USDC/USDT",
           subName: "Raydium",
           logoOne: "usdc.svg",
           logoTwo: "usdt.svg",
         },
-        col2: "you want",
+        APY: "%3.19",
+        APYHistory: "---",
+        TVL: "$0.38b",
+        TVLHistory: "---",
+        risk: 100,
+        age: "30 days",
+        TR: "SOL",
+        type: "Strategy Vaults",
       },
     ],
     []
@@ -40,12 +61,40 @@ function Table() {
     () => [
       {
         Header: "Market/Platform",
-        accessor: "col1" as const, // accessor is the "key" in the data
+        accessor: "platform" as const, // accessor is the "key" in the data
       },
-      // {
-      //   Header: "Column 2",
-      //   accessor: "col2" as const,
-      // },
+      {
+        Header: "APY",
+        accessor: "APY" as const,
+      },
+      {
+        Header: "APY History",
+        accessor: "APYHistory" as const,
+      },
+      {
+        Header: "TVL",
+        accessor: "TVL" as const,
+      },
+      {
+        Header: "TVL History",
+        accessor: "TVLHistory" as const,
+      },
+      {
+        Header: "Risk",
+        accessor: "risk" as const,
+      },
+      {
+        Header: "Age",
+        accessor: "age" as const,
+      },
+      {
+        Header: "TR",
+        accessor: "TR" as const,
+      },
+      {
+        Header: "Type",
+        accessor: "type" as const,
+      },
     ],
     []
   );
@@ -68,10 +117,12 @@ function Table() {
               {headerGroup.headers.map((column) => {
                 const { key, ...restColumn } = column.getHeaderProps();
                 return (
-                  <th key={key} {...restColumn}>
-                    <p className={styles.headerCell}>
-                      {column.render("Header")}
-                    </p>
+                  <th
+                    key={key}
+                    {...restColumn}
+                    className={styles[key]}
+                  >
+                    <p>{column.render("Header")}</p>
                   </th>
                 );
               })}
@@ -84,13 +135,13 @@ function Table() {
           prepareRow(row);
           const { key, ...restRowProps } = row.getRowProps();
           return (
-            <tr className={styles.card} key={key} {...restRowProps}>
+            <tr key={key} {...restRowProps}>
               {row.cells.map((cell) => {
                 const { key, ...restCellProps } = cell.getCellProps();
                 return (
-                  <td key={key} {...restCellProps}>
+                  <td key={key} className={styles.cell} {...restCellProps}>
                     <div>
-                      {cell.column.id === "col1" && (
+                      {cell.column.id === "platform" && (
                         <PlatformCell
                           name={cell.value.name}
                           subName={cell.value.subName}
@@ -98,7 +149,10 @@ function Table() {
                           logoTwo={cell.value.logoTwo}
                         />
                       )}
-                      {/* {cell.column.id !== "col1" && cell.render("Cell")} */}
+                      {cell.column.id.includes("History") && (
+                        <div className={styles.graphCell} />
+                      )}
+                      {cell.column.id !== "platform" && cell.render("Cell")}
                     </div>
                   </td>
                 );
