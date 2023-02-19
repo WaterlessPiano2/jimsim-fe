@@ -2,6 +2,7 @@ import React from "react";
 import { useTable } from "react-table";
 import styles from "@/styles/Home.module.css";
 import PlatformCell from "./PlatformCell";
+import GraphCell from "./GraphCell";
 
 function Table() {
   const data = React.useMemo(
@@ -13,9 +14,9 @@ function Table() {
           logoOne: "solana.svg",
         },
         APY: "%3.19",
-        APYHistory: "---",
+        APYHistory: "uv",
         TVL: "$0.38b",
-        TVLHistory: "---",
+        TVLHistory: "pv",
         risk: 100,
         age: "30 days",
         TR: "SOL",
@@ -29,9 +30,9 @@ function Table() {
           logoTwo: "orca.svg",
         },
         APY: "%3.19",
-        APYHistory: "---",
+        APYHistory: "pv",
         TVL: "$0.38b",
-        TVLHistory: "---",
+        TVLHistory: "uv",
         risk: 100,
         age: "30 days",
         TR: "SOL",
@@ -45,9 +46,9 @@ function Table() {
           logoTwo: "usdt.svg",
         },
         APY: "%3.19",
-        APYHistory: "---",
+        APYHistory: "amt",
         TVL: "$0.38b",
-        TVLHistory: "---",
+        TVLHistory: "amt",
         risk: 100,
         age: "30 days",
         TR: "SOL",
@@ -117,11 +118,7 @@ function Table() {
               {headerGroup.headers.map((column) => {
                 const { key, ...restColumn } = column.getHeaderProps();
                 return (
-                  <th
-                    key={key}
-                    {...restColumn}
-                    className={styles[key]}
-                  >
+                  <th key={key} {...restColumn} className={styles[key]}>
                     <p>{column.render("Header")}</p>
                   </th>
                 );
@@ -150,9 +147,11 @@ function Table() {
                         />
                       )}
                       {cell.column.id.includes("History") && (
-                        <div className={styles.graphCell} />
+                        <GraphCell data={cell.value} />
                       )}
-                      {cell.column.id !== "platform" && cell.render("Cell")}
+                      {cell.column.id !== "platform" &&
+                        !cell.column.id.includes("History") &&
+                        cell.render("Cell")}
                     </div>
                   </td>
                 );
