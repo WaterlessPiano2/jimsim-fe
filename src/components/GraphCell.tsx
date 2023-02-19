@@ -53,12 +53,12 @@ interface props {
 const GraphCell = ({ data }: props) => {
   return (
     <LineChart
-      width={40}
-      height={40}
+      width={90}
+      height={60}
       margin={{
         top: 5,
-        right: -10,
-        left: -10,
+        right: 1,
+        left: 1,
       }}
       data={displayData}
     >

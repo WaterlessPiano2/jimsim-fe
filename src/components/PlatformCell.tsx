@@ -16,16 +16,16 @@ const PlatformCell = ({ name, subName, logoOne, logoTwo }: props) => {
           className={styles.platformLogoOne}
           alt={logoOne}
           src={logoOne}
-          height={20}
-          width={20}
+          height={30}
+          width={30}
         ></Image>{" "}
         {logoTwo && (
           <Image
             className={styles.platformLogoTwo}
             alt={logoTwo}
             src={logoTwo}
-            height={20}
-            width={20}
+            height={30}
+            width={30}
           ></Image>
         )}
       </div>

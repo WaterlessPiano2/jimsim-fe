@@ -111,7 +111,7 @@ table {
   border-collapse: collapse;
   table-layout: auto;
   margin: 0 auto; 
-  width: 90%;
+  width: 100%;
 }
 tbody{
   box-shadow: 0 0 0 0.5px gray;
@@ -130,7 +130,7 @@ td {
 }
 
 tr {  
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
 }
 
 tr:last-child{  
