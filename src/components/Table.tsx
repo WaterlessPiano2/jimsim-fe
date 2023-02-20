@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable } from "react-table";
+import { useTable, useExpanded } from "react-table";
 import styles from "@/styles/Home.module.css";
 import PlatformCell from "./PlatformCell";
 import GraphCell from "./GraphCell";
@@ -100,8 +100,17 @@ function Table() {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state: { expanded },
+  } = useTable(
+    { columns, data },
+    useExpanded // Use the useExpanded plugin hook
+  );
 
   return (
     <table {...getTableProps()} className={styles.table}>
@@ -132,31 +141,39 @@ function Table() {
           prepareRow(row);
           const { key, ...restRowProps } = row.getRowProps();
           return (
-            <tr className={styles.bodyRow} key={key} {...restRowProps}>
-              {row.cells.map((cell) => {
-                const { key, ...restCellProps } = cell.getCellProps();
-                return (
-                  <td key={key} className={styles.cell} {...restCellProps}>
-                    <div>
-                      {cell.column.id === "platform" && (
-                        <PlatformCell
-                          name={cell.value.name}
-                          subName={cell.value.subName}
-                          logoOne={cell.value.logoOne}
-                          logoTwo={cell.value.logoTwo}
-                        />
-                      )}
-                      {cell.column.id.includes("History") && (
-                        <GraphCell data={cell.value} />
-                      )}
-                      {cell.column.id !== "platform" &&
-                        !cell.column.id.includes("History") &&
-                        cell.render("Cell")}
-                    </div>
-                  </td>
-                );
-              })}
-            </tr>
+            <>
+              <tr
+                onClick={() => row.toggleRowExpanded()}
+                className={styles.bodyRow}
+                key={key}
+                {...restRowProps}
+              >
+                {row.cells.map((cell) => {
+                  const { key, ...restCellProps } = cell.getCellProps();
+                  return (
+                    <td key={key} className={styles.cell} {...restCellProps}>
+                      <div>
+                        {cell.column.id === "platform" && (
+                          <PlatformCell
+                            name={cell.value.name}
+                            subName={cell.value.subName}
+                            logoOne={cell.value.logoOne}
+                            logoTwo={cell.value.logoTwo}
+                          />
+                        )}
+                        {cell.column.id.includes("History") && (
+                          <GraphCell data={cell.value} />
+                        )}
+                        {cell.column.id !== "platform" &&
+                          !cell.column.id.includes("History") &&
+                          cell.render("Cell")}
+                      </div>
+                    </td>
+                  );
+                })}
+              </tr>
+              {row.isExpanded && <div>expanded</div>}
+            </>
           );
         })}
       </tbody>
