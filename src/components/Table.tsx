@@ -132,7 +132,7 @@ function Table() {
           prepareRow(row);
           const { key, ...restRowProps } = row.getRowProps();
           return (
-            <tr key={key} {...restRowProps}>
+            <tr className={styles.bodyRow} key={key} {...restRowProps}>
               {row.cells.map((cell) => {
                 const { key, ...restCellProps } = cell.getCellProps();
                 return (

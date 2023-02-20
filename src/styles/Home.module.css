@@ -27,6 +27,16 @@ color: gray;
   width: 80px;
  }
 
+ .bodyRow:hover {
+  background-color:lightblue;
+  transition: 1;
+  cursor: pointer;
+} 
+
+ .bodyRow {
+  transition: 0.5s background-color;
+} 
+
  .platformCell {
   display: inline-flex;
 } 
