@@ -3,6 +3,7 @@ import { useTable, useExpanded } from "react-table";
 import styles from "@/styles/Home.module.css";
 import PlatformCell from "./PlatformCell";
 import GraphCell from "./GraphCell";
+import RowExpansion from "./RowExpansion";
 
 function Table() {
   const data = React.useMemo(
@@ -172,7 +173,7 @@ function Table() {
                   );
                 })}
               </tr>
-              {row.isExpanded && <div>expanded</div>}
+              {row.isExpanded && <RowExpansion />}
             </>
           );
         })}
