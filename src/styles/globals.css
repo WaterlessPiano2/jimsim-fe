@@ -130,9 +130,9 @@ td {
 }
 
 tr {  
-  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
 }
 
-tr:last-child{  
-  border-bottom: 0px;
+tr:first-child{  
+  border-top: 0px;
 }
