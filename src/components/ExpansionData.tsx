@@ -4,6 +4,7 @@ const ExpansionData = () => {
   return (
     <div className={styles.expansionData}>
       <DataRow
+        color="blue"
         headingOne="TVL"
         headingTwo="TVL TOKEN A"
         headingThree="TVL TOKEN B"
@@ -12,6 +13,7 @@ const ExpansionData = () => {
         valueThree="USDT 0.77B"
       />{" "}
       <DataRow
+        color="red"
         headingTwo="RETURNS"
         valueOne="0.52%"
         valueTwo="2.52%"
@@ -21,6 +23,7 @@ const ExpansionData = () => {
         subTextThree="90D"
       />{" "}
       <DataRow
+        color="gold"
         headingTwo="VOLATILITY"
         valueOne="3.52%"
         valueTwo="8.52%"
@@ -30,6 +33,7 @@ const ExpansionData = () => {
         subTextThree="90D"
       />{" "}
       <DataRow
+        color="orange"
         headingTwo="LOSES"
         valueOne="3.52%"
         valueTwo="3.4"
@@ -43,6 +47,7 @@ const ExpansionData = () => {
 };
 
 interface rowProps {
+  color: string;
   headingOne?: string;
   headingTwo: string;
   headingThree?: string;
@@ -55,6 +60,7 @@ interface rowProps {
 }
 
 const DataRow = ({
+  color,
   headingOne,
   headingTwo,
   headingThree,
@@ -66,27 +72,41 @@ const DataRow = ({
   subTextThree,
 }: rowProps) => (
   <div className={styles.expansionDataRow}>
-    <Datacell heading={headingOne} value={valueOne} subText={subTextOne} />
-    <Datacell heading={headingTwo} value={valueTwo} subText={subTextTwo} />
+    <Datacell
+      heading={headingOne}
+      value={valueOne}
+      subText={subTextOne}
+      color={color}
+    />
+    <Datacell
+      heading={headingTwo}
+      value={valueTwo}
+      subText={subTextTwo}
+      color={color}
+    />
     <Datacell
       heading={headingThree}
       value={valueThree}
       subText={subTextThree}
+      color={color}
     />
   </div>
 );
 
 interface cellProps {
+  color: string;
   heading?: string;
   value: string;
   subText?: string;
 }
 
-const Datacell = ({ heading, value, subText }: cellProps) => (
+const Datacell = ({ color, heading, value, subText }: cellProps) => (
   <div className={styles.expansionDataCell}>
-    <div>{heading}</div>
-    <div>{value}</div>
-    <div>{subText}</div>
+    <div className={styles.expansionDataCelTitle}>{heading}</div>
+    <div className={styles.expansionDataCellValue} style={{ color: color }}>
+      {value}
+    </div>
+    <div className={styles.expansionDataCellDuration}>{subText}</div>
   </div>
 );
 

@@ -86,3 +86,17 @@ color: gray;
   display: block;
   text-align: center;
 }
+
+.expansionDataCelTitle{
+  font-weight: 400;
+}
+
+.expansionDataCellValue{
+  font-weight: 1000;
+  line-height: 30px;
+}
+
+.expansionDataCellDuration{
+  font-weight: 400;
+  color:gray;
+}
