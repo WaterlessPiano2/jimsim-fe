@@ -114,71 +114,73 @@ function Table() {
   );
 
   return (
-    <table {...getTableProps()} className={styles.table}>
-      <thead className={styles.header}>
-        {headerGroups.map((headerGroup) => {
-          const { key, ...restHeaderGroupProps } =
-            headerGroup.getHeaderGroupProps();
-          return (
-            <tr
-              className={styles.headerRow}
-              key={key}
-              {...restHeaderGroupProps}
-            >
-              {headerGroup.headers.map((column) => {
-                const { key, ...restColumn } = column.getHeaderProps();
-                return (
-                  <th key={key} {...restColumn} className={styles[key]}>
-                    <p>{column.render("Header")}</p>
-                  </th>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </thead>
-      <tbody className={styles.body} {...getTableBodyProps}>
-        {rows.map((row) => {
-          prepareRow(row);
-          const { key, ...restRowProps } = row.getRowProps();
-          return (
-            <>
+    <div className={styles.main}>
+      <table {...getTableProps()} className={styles.table}>
+        <thead className={styles.header}>
+          {headerGroups.map((headerGroup) => {
+            const { key, ...restHeaderGroupProps } =
+              headerGroup.getHeaderGroupProps();
+            return (
               <tr
-                onClick={() => row.toggleRowExpanded()}
-                className={styles.bodyRow}
+                className={styles.headerRow}
                 key={key}
-                {...restRowProps}
+                {...restHeaderGroupProps}
               >
-                {row.cells.map((cell) => {
-                  const { key, ...restCellProps } = cell.getCellProps();
+                {headerGroup.headers.map((column) => {
+                  const { key, ...restColumn } = column.getHeaderProps();
                   return (
-                    <td key={key} className={styles.cell} {...restCellProps}>
-                      <div>
-                        {cell.column.id === "platform" && (
-                          <PlatformCell
-                            name={cell.value.name}
-                            subName={cell.value.subName}
-                            logoOne={cell.value.logoOne}
-                            logoTwo={cell.value.logoTwo}
-                          />
-                        )}
-                        {cell.column.id.includes("History") && (
-                          <GraphCell data={cell.value} />
-                        )}
-                        {cell.column.id !== "platform" &&
-                          !cell.column.id.includes("History") &&
-                          cell.render("Cell")}
-                      </div>
-                    </td>
+                    <th key={key} {...restColumn} className={styles[key]}>
+                      <p>{column.render("Header")}</p>
+                    </th>
                   );
                 })}
               </tr>
-              {row.isExpanded && <RowExpansion />}
-            </>
-          );
-        })}
-      </tbody>
-    </table>
+            );
+          })}
+        </thead>
+        <tbody className={styles.body} {...getTableBodyProps}>
+          {rows.map((row) => {
+            prepareRow(row);
+            const { key, ...restRowProps } = row.getRowProps();
+            return (
+              <>
+                <tr
+                  onClick={() => row.toggleRowExpanded()}
+                  className={styles.bodyRow}
+                  key={key}
+                  {...restRowProps}
+                >
+                  {row.cells.map((cell) => {
+                    const { key, ...restCellProps } = cell.getCellProps();
+                    return (
+                      <td key={key} className={styles.cell} {...restCellProps}>
+                        <div>
+                          {cell.column.id === "platform" && (
+                            <PlatformCell
+                              name={cell.value.name}
+                              subName={cell.value.subName}
+                              logoOne={cell.value.logoOne}
+                              logoTwo={cell.value.logoTwo}
+                            />
+                          )}
+                          {cell.column.id.includes("History") && (
+                            <GraphCell data={cell.value} />
+                          )}
+                          {cell.column.id !== "platform" &&
+                            !cell.column.id.includes("History") &&
+                            cell.render("Cell")}
+                        </div>
+                      </td>
+                    );
+                  })}
+                </tr>
+                {row.isExpanded && <RowExpansion />}
+              </>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
