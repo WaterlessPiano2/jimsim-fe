@@ -1,4 +1,6 @@
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
+import { LineChart, Line, XAxis, YAxis } from "recharts";
+import styles from "@/styles/Home.module.css";
+
 const displayData = [
   {
     name: "Page A",
@@ -50,33 +52,35 @@ interface props {
 
 const ExpansionGraph = ({ data }: props) => {
   return (
-    <LineChart
-      width={600}
-      height={400}
-      margin={{
-        top: 50,
-        bottom: 50,
-      }}
-      
-      data={displayData}
-    >
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Line
-        type="monotone"
-        dataKey={data}
-        stroke={data === "uv" ? "	#4CBB17" : "#FF0000"}
-        strokeWidth={3}
-        dot={<></>}
-      />{" "}
-      <Line
-        type="monotone"
-        dataKey="amt"
-        stroke={"#FF0000"}
-        strokeWidth={3}
-        dot={<></>}
-      />
-    </LineChart>
+    <div className={styles.expansionGraph}>
+      <LineChart
+        width={600}
+        height={550}
+        margin={{
+          top: 50,
+          bottom: 50,
+          right: 50,
+        }}
+        data={displayData}
+      >
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Line
+          type="monotone"
+          dataKey={data}
+          stroke={data === "uv" ? "	#4CBB17" : "#FF0000"}
+          strokeWidth={3}
+          dot={<></>}
+        />{" "}
+        <Line
+          type="monotone"
+          dataKey="amt"
+          stroke={"#FF0000"}
+          strokeWidth={3}
+          dot={<></>}
+        />
+      </LineChart>
+    </div>
   );
 };
 

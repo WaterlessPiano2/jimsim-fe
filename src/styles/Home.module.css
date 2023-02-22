@@ -65,3 +65,24 @@ color: gray;
   color: gray;
 }
 
+.expansionGraph{
+  float: right;
+}
+
+.expansionData{
+  float: left;
+  display: grid;
+}
+
+.expansionDataRow{
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.expansionDataCell{
+  width: 150px;
+  display: block;
+  text-align: center;
+}
