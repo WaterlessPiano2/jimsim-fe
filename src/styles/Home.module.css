@@ -5,26 +5,28 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-  font-size: 1.2rem;
   line-height: 2;
-  font-weight: 500;
   overflow: scroll;
 }
 
 .header {
-color: gray;
+  color: gray;
+  text-align: left;
 }
 
 .header_platform {
   left:-30px;
   width: 1px;
- }
- 
- .header_TVL, .header_APY, .header_risk, .header_age, .header_TR{
-  width: 40px;
-}
- 
- .header_TVLHistory, .header_APYHistory, .header_type{
+    font-weight: 500;
+  }
+  
+  .header_TVL, .header_APY, .header_risk, .header_age, .header_TR{
+   font-weight: 500;
+   width: 40px;
+  }
+  
+.header_TVLHistory, .header_APYHistory, .header_type{
+  font-weight: 500;
   width: 80px;
  }
 
@@ -59,7 +61,6 @@ color: gray;
 }
 
 .platformSubName {
-  font-size: 1rem;
   line-height: 1.2;
   font-weight: 400;
   color: gray;
@@ -88,11 +89,13 @@ color: gray;
 }
 
 .expansionDataCelTitle{
-  font-weight: 400;
+  font-weight: 500;
+ 
 }
 
 .expansionDataCellValue{
   font-weight: 1000;
+  font-size: 21px;
   line-height: 30px;
 }
 
