@@ -17,20 +17,20 @@
 .header_platform {
   left:-30px;
   width: 1px;
-    font-weight: 500;
-  }
+  font-weight: 500;
+}
   
-  .header_TVL, .header_APY, .header_risk, .header_age, .header_TR{
-   font-weight: 500;
-   width: 40px;
-  }
+.header_TVL, .header_APY, .header_risk, .header_age, .header_TR{
+  font-weight: 500;
+  width: 40px;
+}
   
 .header_TVLHistory, .header_APYHistory, .header_type{
   font-weight: 500;
   width: 80px;
  }
 
- .bodyRow:hover {
+.bodyRow:hover {
   background-color:lightblue;
   transition: 1;
   cursor: pointer;
