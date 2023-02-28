@@ -66,13 +66,17 @@
   color: gray;
 }
 
+.rowExpansion{
+  background-color: blue;
+}
+
 .expansionGraph{
-  float: right;
+  justify-self: flex-end;
 }
 
 .expansionData{
-  float: left;
   display: grid;
+  width: 20vW;
 }
 
 .expansionDataRow{
@@ -90,11 +94,10 @@
 
 .expansionDataCelTitle{
   font-weight: 500;
- 
 }
 
 .expansionDataCellValue{
-  font-weight: 1000;
+  font-weight: 700;
   font-size: 21px;
   line-height: 30px;
 }
@@ -102,4 +105,26 @@
 .expansionDataCellDuration{
   font-weight: 400;
   color:gray;
+}
+
+.rowExpansionParagraphGroup{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.rowExpansionParagraph{
+  display: inline;
+  width: 90%;
+  margin: 10px;
+  text-overflow: clip;
+  white-space:break-spaces;
+}
+
+.rowExpansionParagraph p {
+  color: gray;
+  font-size: 12px;}
+
+.rowExpansionParagraph h1 {
+  color: darkslategrey;
+  font-size: 15px;
 }

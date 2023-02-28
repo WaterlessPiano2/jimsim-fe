@@ -23,7 +23,7 @@ const ExpansionData = () => {
         subTextThree="90D"
       />{" "}
       <DataRow
-        color="gold"
+        color="green"
         headingTwo="VOLATILITY"
         valueOne="3.52%"
         valueTwo="8.52%"

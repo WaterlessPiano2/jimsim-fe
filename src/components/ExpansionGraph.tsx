@@ -55,7 +55,7 @@ const ExpansionGraph = ({ data }: props) => {
     <div className={styles.expansionGraph}>
       <LineChart
         width={600}
-        height={550}
+        height={470}
         margin={{
           top: 50,
           bottom: 50,
