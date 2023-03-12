@@ -48,6 +48,12 @@
   background-color:lightblue;
   transition: 1;
   cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bodyRow:hover {
+    background-color:navy;
+  } 
 } 
 
  .bodyRow {
@@ -115,19 +121,30 @@
 }
 
 .expansionDataTooltip {
+  border: solid 1px gray;
+  border-radius: 10px;
   visibility: hidden;
   position: absolute;
   z-index: 1;
-  width: 100px;
-  color: white;
+  max-width: 200px;
   font-size: 12px;
-  background-color: #192733;
+  background-color: white;
   border-radius: 10px;
   padding: 10px 15px 10px 15px;
   margin-top:-50px;
   opacity:0;
   -webkit-transition: opacity .5s;
   transition: opacity .5s;
+  text-overflow: clip;
+  white-space:break-spaces;
+  line-height: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .expansionDataTooltip {
+    color: white;
+    background-color: #192733;
+  }
 }
 
 .expansionDataCellContainer:hover .expansionDataTooltip {
@@ -135,7 +152,7 @@
   opacity:1;
 }
 
-.expansionDataCelTitle{
+.expansionDataCellTitle{
   font-weight: 500;
 }
 

@@ -6,41 +6,50 @@ const ExpansionData = () => {
       <DataRow
         color="blue"
         headingOne="TVL"
-        headingTwo="TVL TOKEN A"
-        headingThree="TVL TOKEN B"
+        headingTwo="AMOUNT T/A"
+        headingThree="AMOUNT T/A"
         valueOne="$1.54B"
         valueTwo="USDC 0.77B"
         valueThree="USDT 0.77B"
-      />{" "}
+        tooltipOne="Total value locked (TVL) is the overall value of deposited crypto assets"
+        tooltipTwo="Amount of token A"
+        tooltipThree="Amount of token B"
+      />
       <DataRow
         color="red"
-        headingTwo="RETURNS"
+        headingOne="RETURNS"
+        headingTwo="MARKET"
+        headingThree="TOTAL FEES"
         valueOne="0.52%"
         valueTwo="2.52%"
-        valueThree="4.52%"
-        subTextOne="7D"
-        subTextTwo="30D"
-        subTextThree="90D"
-      />{" "}
+        valueThree="$334.604"
+        tooltipOne="A return is the change in price of an asset over time"
+        tooltipTwo="Market"
+        tooltipThree="Total Fees"
+      />
       <DataRow
         color="green"
-        headingTwo="VOLATILITY"
+        headingOne="VOLATILITIY"
+        headingTwo="SHARPE RATIO"
+        headingThree="SORTINO RATIO"
         valueOne="3.52%"
-        valueTwo="8.52%"
-        valueThree="1.52%"
-        subTextOne="7D"
-        subTextTwo="30D"
-        subTextThree="90D"
-      />{" "}
+        valueTwo="8.52"
+        valueThree="1.52"
+        tooltipOne="Volatility is a measure of how much the price of an asset has moved up or down over time"
+        tooltipTwo="The Sharpe ratio is a measure of risk-adjusted return"
+        tooltipThree="The Sortino ratio measures the risk-adjusted return of an investment asset, portfolio, or strategy. It is a modification of the Sharpe ratio but penalizes only those returns falling below a user-specified target or required rate of return"
+      />
       <DataRow
         color="orange"
-        headingTwo="LOSES"
-        valueOne="3.52%"
-        valueTwo="3.4"
-        valueThree="4.52%"
-        subTextOne="7D"
-        subTextTwo="30D"
-        subTextThree="90D"
+        headingOne="AVG SLIPPAGE"
+        headingTwo="RT TOTAL"
+        headingThree="MAX DD"
+        valueOne="1.52%"
+        valueTwo="561,450"
+        valueThree="41.52%"
+        tooltipOne="Slippage refers to the difference between the expected price of a trade and the price at which the trade is executed"
+        tooltipTwo="Reward token total"
+        tooltipThree="A maximum drawdown is the maximum observed loss from a peak to a trough, before a new peak is attained"
       />
     </div>
   );
@@ -48,15 +57,15 @@ const ExpansionData = () => {
 
 interface rowProps {
   color: string;
-  headingOne?: string;
+  headingOne: string;
   headingTwo: string;
-  headingThree?: string;
+  headingThree: string;
   valueOne: string;
   valueTwo: string;
   valueThree: string;
-  subTextOne?: string;
-  subTextTwo?: string;
-  subTextThree?: string;
+  tooltipOne: string;
+  tooltipTwo: string;
+  tooltipThree: string;
 }
 
 const DataRow = ({
@@ -67,27 +76,27 @@ const DataRow = ({
   valueOne,
   valueTwo,
   valueThree,
-  subTextOne,
-  subTextTwo,
-  subTextThree,
+  tooltipOne,
+  tooltipTwo,
+  tooltipThree,
 }: rowProps) => (
   <div className={styles.expansionDataRow}>
     <Datacell
       heading={headingOne}
       value={valueOne}
-      subText={subTextOne}
+      tooltip={tooltipOne}
       color={color}
     />
     <Datacell
       heading={headingTwo}
       value={valueTwo}
-      subText={subTextTwo}
+      tooltip={tooltipTwo}
       color={color}
     />
     <Datacell
       heading={headingThree}
       value={valueThree}
-      subText={subTextThree}
+      tooltip={tooltipThree}
       color={color}
     />
   </div>
@@ -95,18 +104,18 @@ const DataRow = ({
 
 interface cellProps {
   color: string;
-  heading?: string;
+  heading: string;
   value: string;
-  subText?: string;
+  tooltip: string;
 }
 
-const Datacell = ({ color, heading, value, subText }: cellProps) => (
+const Datacell = ({ color, heading, value, tooltip }: cellProps) => (
   <div className={styles.expansionDataCellContainer}>
-    <div className={styles.expansionDataTooltip}>{heading}</div>
+    <div className={styles.expansionDataTooltip}>{tooltip}</div>
+    <div className={styles.expansionDataCellTitle}>{heading}</div>
     <div className={styles.expansionDataCellValue} style={{ color: color }}>
       {value}
     </div>
-    <div className={styles.expansionDataCellDuration}>{subText}</div>
   </div>
 );
 
