@@ -4,9 +4,21 @@
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
-  min-height: 100vh;
+  min-height: 95vh;
   line-height: 2;
   overflow: scroll;
+}
+
+.pageHeader {
+  min-height: 5vh;
+  padding: 10px;
+  display: inline-flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  align-content: space-around;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 
 .header {
