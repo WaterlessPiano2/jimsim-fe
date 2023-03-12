@@ -12,27 +12,32 @@ const RowExpansion = () => {
         </div>
         <div className={styles.rowExpansionParagraphGroup}>
           <div className={styles.rowExpansionParagraph}>
-            <h1>Vault Strategy / Pool Description</h1>
+            <h1>Description</h1>
             <p>
-              Generates yield by running an automT-USDC-P-ETH earns yield on its
-              USDC deposits by running a weekly automated ETH put-selling
-              strategy, where the put options are collateralized by USDC. The
-              vault reinvests the yield it earns back into the strategy,
-              effectively compounding the yields for depositors over time.ated
-              USDC put selling strategy.{" "}
+              An AMM offers a single price for the exchange of two digital
+              assets instead of a full order book on centralized exchanges. The
+              prices that are offered are popular and readjusted by the protocol
+              depending on the amount of capital on each side of a liquidity
+              pool. The AMM doesn’t have capital itself and instead gathers
+              funds from third-party participants through liquidity pools.
+              Participants are incentivized to deploy capital to the AMMs
+              liquidity pool, because the protocol shares a certain amount of
+              the trading fees with its liquidity providers.
             </p>
           </div>
           <div className={styles.rowExpansionParagraph}>
             <h1>Risk</h1>
             <p>
-              The primary risk for running this put selling strategy is that the
-              vault may incur a weekly loss in the case where the put options
-              sold by the vault expire in-the-money (meaning the price of ETH is
-              below the strike price of the put options minted by the vault).
-              Such a situation is expected to happen less than 5% of the
-              time.The Theta Vault smart contracts have been audited by
-              OpenZeppelin and ChainSafe. Despite that, users are advised to
-              exercise caution and only risk funds they can afford to lose.
+              The risk for liquidity providers, providing liquidity to AMMs is
+              called Impermanent Loss. It refers to a situation in which the
+              profit you gain from staking a token in a liquidity pool is less
+              than what you would have earned by just holding the asset. It
+              happens when a token’s price changes in the market, which causes
+              your deposited assets in the liquidity pool to become worth less
+              than their present value in the market. The bigger the price
+              change, the more your assets are exposed to impermanent loss.
+              Impermanent loss is similar to inventory risk with institutional
+              market makers.
             </p>
           </div>
         </div>

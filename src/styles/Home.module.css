@@ -1,4 +1,6 @@
 .main {
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -6,7 +8,7 @@
   padding: 6rem;
   min-height: 95vh;
   line-height: 2;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 .pageHeader {
@@ -98,10 +100,39 @@
   padding-top: 20px;
 }
 
-.expansionDataCell{
+.expansionDataCellContainer{
+  border: solid 2px transparent;
+  border-radius: 10px;
+  -webkit-transition: border .35s ease-in-out;
+  transition: border .35s ease-in-out;
   width: 150px;
   display: block;
   text-align: center;
+}
+
+.expansionDataCellContainer:hover {
+  border: 2px solid Blue;
+}
+
+.expansionDataTooltip {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  background-color: #192733;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+  margin-top:-50px;
+  opacity:0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.expansionDataCellContainer:hover .expansionDataTooltip {
+  visibility: visible;
+  opacity:1;
 }
 
 .expansionDataCelTitle{

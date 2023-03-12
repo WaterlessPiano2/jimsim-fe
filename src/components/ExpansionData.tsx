@@ -101,8 +101,8 @@ interface cellProps {
 }
 
 const Datacell = ({ color, heading, value, subText }: cellProps) => (
-  <div className={styles.expansionDataCell}>
-    <div className={styles.expansionDataCelTitle}>{heading}</div>
+  <div className={styles.expansionDataCellContainer}>
+    <div className={styles.expansionDataTooltip}>{heading}</div>
     <div className={styles.expansionDataCellValue} style={{ color: color }}>
       {value}
     </div>
