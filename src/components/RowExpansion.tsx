@@ -5,7 +5,7 @@ import ExpansionGraph from "./ExpansionGraph";
 const RowExpansion = () => {
   return (
     <>
-      <td colSpan={9}>
+      <td colSpan={12}>
         <div className={styles.rowExpansionParagraphGroup}>
           <ExpansionData />
           <ExpansionGraph data="uv" />
