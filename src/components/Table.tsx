@@ -10,66 +10,32 @@ interface Props {
 }
 
 function Table({ defiPoolMetrics }: Props) {
+  const timeScale = "7days";
+
   console.log(defiPoolMetrics);
-  const data = React.useMemo(
-    () => [
-      {
-        platform: {
-          name: "SOL",
-          subName: "Staking",
-          logoOne: "solana.svg",
-        },
-        type: "AMM",
-        returns: "%3.19",
-        APYHistory: "uv",
-        TVL: "$0.38B",
-        TVLHistory: "pv",
-        risk: 100,
-        volume: "$1.5B",
-        History: "amt",
-        volTVL: "1.5",
-        rewardToken: "R",
-        RTAPY: "3.14%",
-      },
-      {
-        platform: {
-          name: "SOL",
-          subName: "Orca",
-          logoOne: "solana.svg",
-          logoTwo: "orca.svg",
-        },
-        type: "AMM",
-        returns: "%3.19",
-        APYHistory: "uv",
-        TVL: "$0.38B",
-        TVLHistory: "pv",
-        risk: 100,
-        volume: "$1.5B",
-        History: "amt",
-        volTVL: "1.5",
-        rewardToken: "R",
-        RTAPY: "3.14%",
-      },
-      {
-        platform: {
-          name: "USDC/USDT",
-          subName: "Raydium",
-          logoOne: "usdc.svg",
-          logoTwo: "usdt.svg",
-        },
-        type: "AMM",
-        returns: "%3.19",
-        APYHistory: "uv",
-        TVL: "$0.38B",
-        TVLHistory: "pv",
-        risk: 100,
-        volume: "$1.5B",
-        History: "amt",
-        volTVL: "1.5",
-        rewardToken: "R",
-        RTAPY: "3.14%",
-      },
-    ],
+  const mainTableData = React.useMemo(
+    () =>
+      [...defiPoolMetrics]?.map((row) => {
+        return {
+          platform: {
+            name: row?.pool_name,
+            subName: row?.project_name,
+            logoOne: `/${row?.token_a_symbol}.png`,
+            logoTwo: `/${row?.token_b_symbol}.png`,
+          },
+          type: row?.product_type.replace(/([A-Z])/g, " $1").trim(),
+          returns: row[`returns_${timeScale}`],
+          APYHistory: "uv",
+          TVL: row?.tvl,
+          TVLHistory: "pv",
+          risk: null,
+          volume: null,
+          History: "amt",
+          volTVL: null,
+          rewardToken: "R",
+          RTAPY: null,
+        };
+      }),
     []
   );
 
@@ -135,7 +101,10 @@ function Table({ defiPoolMetrics }: Props) {
     prepareRow,
     state: { expanded },
   } = useTable(
-    { columns, data },
+    {
+      columns,
+      data: mainTableData,
+    },
     useExpanded // Use the useExpanded plugin hook
   );
 
