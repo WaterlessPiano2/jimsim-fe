@@ -32,16 +32,25 @@
   left:-30px;
   width: 1px;
   font-weight: 500;
+  font-weight: 700;
 }
   
 .header_TVL, .header_APY, .header_risk, .header_age, .header_TR{
-  font-weight: 500;
+  font-weight: 700;
   width: 40px;
 }
   
 .header_TVLHistory, .header_APYHistory, .header_type{
-  font-weight: 500;
+  font-weight: 700;
   width: 80px;
+ }
+ 
+ .header_rewardToken{
+  font-weight: 700;
+  width: 10px;
+  line-height: 20px;
+  text-overflow: clip;
+  white-space:break-spaces;
  }
 
 .bodyRow:hover {
