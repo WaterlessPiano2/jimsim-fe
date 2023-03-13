@@ -5,6 +5,7 @@ const ExpansionData = () => {
     <div className={styles.expansionData}>
       <DataRow
         color="#1C76FD"
+        toolTipLocation="86%"
         headingOne="TVL"
         headingTwo="AMOUNT T/A"
         headingThree="AMOUNT T/A"
@@ -19,6 +20,7 @@ const ExpansionData = () => {
         tooltipFour="Staked total value locked"
       />
       <DataRow
+        toolTipLocation="73%"
         color="#E33283"
         headingOne="RETURNS"
         headingTwo="MARKET"
@@ -34,6 +36,7 @@ const ExpansionData = () => {
         tooltipFour="Fee APY"
       />
       <DataRow
+        toolTipLocation="60%"
         color="#E3A732"
         headingOne="VOLATILITIY"
         headingTwo="SHARPE RATIO"
@@ -49,6 +52,7 @@ const ExpansionData = () => {
         tooltipFour="Treynor ratio is a risk-adjusted measurement of return based on systematic risk"
       />
       <DataRow
+        toolTipLocation="47%"
         color="#E35C32"
         headingOne="AVG SLIPPAGE"
         headingTwo="RT TOTAL"
@@ -68,6 +72,7 @@ const ExpansionData = () => {
 };
 
 interface rowProps {
+  toolTipLocation: string;
   color: string;
   headingOne: string;
   headingTwo: string;
@@ -84,6 +89,7 @@ interface rowProps {
 }
 
 const DataRow = ({
+  toolTipLocation,
   color,
   headingOne,
   headingTwo,
@@ -100,24 +106,28 @@ const DataRow = ({
 }: rowProps) => (
   <div className={styles.expansionDataRow}>
     <Datacell
+      toolTipLocation={toolTipLocation}
       heading={headingOne}
       value={valueOne}
       tooltip={tooltipOne}
       color={color}
     />
     <Datacell
+      toolTipLocation={toolTipLocation}
       heading={headingTwo}
       value={valueTwo}
       tooltip={tooltipTwo}
       color={color}
     />
     <Datacell
+      toolTipLocation={toolTipLocation}
       heading={headingThree}
       value={valueThree}
       tooltip={tooltipThree}
       color={color}
     />
     <Datacell
+      toolTipLocation={toolTipLocation}
       heading={headingFour}
       value={valueFour}
       tooltip={tooltipFour}
@@ -131,11 +141,23 @@ interface cellProps {
   heading: string;
   value: string;
   tooltip: string;
+  toolTipLocation: string;
 }
 
-const Datacell = ({ color, heading, value, tooltip }: cellProps) => (
+const Datacell = ({
+  color,
+  heading,
+  value,
+  tooltip,
+  toolTipLocation,
+}: cellProps) => (
   <div className={styles.expansionDataCellContainer}>
-    <div className={styles.expansionDataTooltip}>{tooltip}</div>
+    <div
+      className={styles.expansionDataTooltip}
+      style={{ bottom: toolTipLocation }}
+    >
+      {tooltip}
+    </div>
     <div className={styles.expansionDataCellTitle}>{heading}</div>
     <div className={styles.expansionDataCellValue} style={{ color: color }}>
       {value}
