@@ -5,7 +5,12 @@ import PlatformCell from "./PlatformCell";
 import GraphCell from "./GraphCell";
 import RowExpansion from "./RowExpansion";
 
-function Table() {
+interface Props {
+  defiPoolMetrics: any;
+}
+
+function Table({ defiPoolMetrics }: Props) {
+  console.log(defiPoolMetrics);
   const data = React.useMemo(
     () => [
       {

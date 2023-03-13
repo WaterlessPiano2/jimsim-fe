@@ -1,10 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
 import Table from "@/components/Table";
-import Header from "@/components/Header";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const DynamicHeader = dynamic(() => import("../components/Header"), {
   ssr: false,
@@ -12,7 +10,11 @@ const DynamicHeader = dynamic(() => import("../components/Header"), {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+interface Props {
+  defiPoolMetrics: any;
+}
+
+export default function Home({ defiPoolMetrics }: Props) {
   return (
     <>
       <Head>
@@ -23,8 +25,32 @@ export default function Home() {
       </Head>
       <DynamicHeader />
       <main className={inter.className}>
-        <Table />
+        <Table defiPoolMetrics={defiPoolMetrics} />
       </main>
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
+  console.log(context.params);
+  console.log(context.resolvedUrl);
+  console.log(context.req.headers.host);
+  const baseURL = context.req.headers.host;
+  const URL = `http://${baseURL}/api/defi-pool-metrics`;
+  const res = await fetch(URL);
+  const defiPoolMetrics = await res.json();
+
+  if (!defiPoolMetrics) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { defiPoolMetrics: defiPoolMetrics },
+  };
 }
