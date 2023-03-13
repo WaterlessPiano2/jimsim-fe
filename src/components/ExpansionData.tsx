@@ -14,6 +14,9 @@ const ExpansionData = () => {
         tooltipOne="Total value locked (TVL) is the overall value of deposited crypto assets"
         tooltipTwo="Amount of token A"
         tooltipThree="Amount of token B"
+        headingFour="STAKED TVL"
+        valueFour="$420,69"
+        tooltipFour="Staked total value locked"
       />
       <DataRow
         color="red"
@@ -26,6 +29,9 @@ const ExpansionData = () => {
         tooltipOne="A return is the change in price of an asset over time"
         tooltipTwo="Market"
         tooltipThree="Total Fees"
+        headingFour="FEE APY"
+        valueFour="1.53%"
+        tooltipFour="Fee APY"
       />
       <DataRow
         color="green"
@@ -38,6 +44,9 @@ const ExpansionData = () => {
         tooltipOne="Volatility is a measure of how much the price of an asset has moved up or down over time"
         tooltipTwo="The Sharpe ratio is a measure of risk-adjusted return"
         tooltipThree="The Sortino ratio measures the risk-adjusted return of an investment asset, portfolio, or strategy. It is a modification of the Sharpe ratio but penalizes only those returns falling below a user-specified target or required rate of return"
+        headingFour="TREYNOR RATIO"
+        valueFour="1.77"
+        tooltipFour="Treynor ratio is a risk-adjusted measurement of return based on systematic risk"
       />
       <DataRow
         color="orange"
@@ -50,6 +59,9 @@ const ExpansionData = () => {
         tooltipOne="Slippage refers to the difference between the expected price of a trade and the price at which the trade is executed"
         tooltipTwo="Reward token total"
         tooltipThree="A maximum drawdown is the maximum observed loss from a peak to a trough, before a new peak is attained"
+        headingFour="RT APY"
+        valueFour="3.57%"
+        tooltipFour="Reward token APY"
       />
     </div>
   );
@@ -66,6 +78,9 @@ interface rowProps {
   tooltipOne: string;
   tooltipTwo: string;
   tooltipThree: string;
+  headingFour: string;
+  valueFour: string;
+  tooltipFour: string;
 }
 
 const DataRow = ({
@@ -79,6 +94,9 @@ const DataRow = ({
   tooltipOne,
   tooltipTwo,
   tooltipThree,
+  headingFour,
+  valueFour,
+  tooltipFour,
 }: rowProps) => (
   <div className={styles.expansionDataRow}>
     <Datacell
@@ -97,6 +115,12 @@ const DataRow = ({
       heading={headingThree}
       value={valueThree}
       tooltip={tooltipThree}
+      color={color}
+    />
+    <Datacell
+      heading={headingFour}
+      value={valueFour}
+      tooltip={tooltipFour}
       color={color}
     />
   </div>
