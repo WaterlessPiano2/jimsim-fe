@@ -4,7 +4,7 @@ const ExpansionData = () => {
   return (
     <div className={styles.expansionData}>
       <DataRow
-        color="blue"
+        color="#1C76FD"
         headingOne="TVL"
         headingTwo="AMOUNT T/A"
         headingThree="AMOUNT T/A"
@@ -19,7 +19,7 @@ const ExpansionData = () => {
         tooltipFour="Staked total value locked"
       />
       <DataRow
-        color="red"
+        color="#E33283"
         headingOne="RETURNS"
         headingTwo="MARKET"
         headingThree="TOTAL FEES"
@@ -34,7 +34,7 @@ const ExpansionData = () => {
         tooltipFour="Fee APY"
       />
       <DataRow
-        color="green"
+        color="#E3A732"
         headingOne="VOLATILITIY"
         headingTwo="SHARPE RATIO"
         headingThree="SORTINO RATIO"
@@ -49,7 +49,7 @@ const ExpansionData = () => {
         tooltipFour="Treynor ratio is a risk-adjusted measurement of return based on systematic risk"
       />
       <DataRow
-        color="orange"
+        color="#E35C32"
         headingOne="AVG SLIPPAGE"
         headingTwo="RT TOTAL"
         headingThree="MAX DD"

@@ -23,29 +23,25 @@
 }
 
 .header {
-  color: gray;
+  font-weight: 100;
+  color: #8D8D8D;
   text-align: left;
 }
 
 .header_platform {
   left:-30px;
   width: 1px;
-  font-weight: 500;
-  font-weight: 700;
 }
   
 .header_TVL, .header_APY, .header_risk, .header_age, .header_TR{
-  font-weight: 700;
   width: 40px;
 }
   
 .header_TVLHistory, .header_APYHistory, .header_type{
-  font-weight: 700;
   width: 80px;
  }
  
  .header_rewardToken{
-  font-weight: 700;
   width: 10px;
   line-height: 20px;
   text-overflow: clip;
@@ -60,7 +56,7 @@
 
 @media (prefers-color-scheme: dark) {
   .bodyRow:hover {
-    background-color:navy;
+    background-color:#182E4D;
   } 
 } 
 
@@ -192,7 +188,15 @@
   color: gray;
   font-size: 12px;}
 
+
 .rowExpansionParagraph h1 {
-  color: darkslategrey;
+  color: #282828;
+  font-weight: 500;
   font-size: 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rowExpansionParagraph h1 {
+    color: #E4E4E4  ;
+  }
 }
