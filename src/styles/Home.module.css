@@ -95,11 +95,14 @@
 }
 
 .expansionGraph{
+  margin-right: 69px;
   justify-self: flex-end;
 }
 
 .expansionData{
   display: grid;
+  height: 90%;
+  padding-top: 21px;
   width: 20vW;
 }
 

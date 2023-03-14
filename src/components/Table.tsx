@@ -26,7 +26,7 @@ function Table({ defiPoolMetrics }: Props) {
           },
           type: row?.product_type.replace(/([A-Z])/g, " $1").trim(),
           returns: row[`returns_${timeScale}`],
-          APYHistory: "uv",
+          ReturnsHistory: "uv",
           TVL: row?.tvl,
           TVLHistory: "pv",
           risk: null,
@@ -55,8 +55,8 @@ function Table({ defiPoolMetrics }: Props) {
         accessor: "returns" as const,
       },
       {
-        Header: "APY History",
-        accessor: "APYHistory" as const,
+        Header: "Returns History",
+        accessor: "ReturnsHistory" as const,
       },
       {
         Header: "TVL",

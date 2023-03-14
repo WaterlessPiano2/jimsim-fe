@@ -22,7 +22,7 @@ view defi_pool_metrics_ui_view {
   tokena_amount   Decimal?  @db.Decimal
   tokenb_amount   Decimal?  @db.Decimal
   staked_tvl      Decimal?  @db.Decimal
-  returns_7days   Decimal?  @db.Decimal
+  returns_7day    Decimal?  @db.Decimal
   total_fee_7day  Decimal?  @db.Decimal
   fee_apy_7day    Decimal?  @db.Decimal
 }

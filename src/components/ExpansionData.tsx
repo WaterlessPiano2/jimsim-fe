@@ -5,10 +5,10 @@ const ExpansionData = () => {
     <div className={styles.expansionData}>
       <DataRow
         color="#1C76FD"
-        toolTipLocation="86%"
+        toolTipLocation="100px"
         headingOne="TVL"
         headingTwo="AMOUNT T/A"
-        headingThree="AMOUNT T/A"
+        headingThree="AMOUNT T/B"
         valueOne="$1.54B"
         valueTwo="USDC 0.77B"
         valueThree="USDT 0.77B"
@@ -20,7 +20,7 @@ const ExpansionData = () => {
         tooltipFour="Staked total value locked"
       />
       <DataRow
-        toolTipLocation="73%"
+        toolTipLocation="-10px"
         color="#E33283"
         headingOne="RETURNS"
         headingTwo="MARKET"
@@ -36,7 +36,7 @@ const ExpansionData = () => {
         tooltipFour="Fee APY"
       />
       <DataRow
-        toolTipLocation="60%"
+        toolTipLocation="-10px"
         color="#E3A732"
         headingOne="VOLATILITIY"
         headingTwo="SHARPE RATIO"
@@ -52,7 +52,7 @@ const ExpansionData = () => {
         tooltipFour="Treynor ratio is a risk-adjusted measurement of return based on systematic risk"
       />
       <DataRow
-        toolTipLocation="47%"
+        toolTipLocation="-10px"
         color="#E35C32"
         headingOne="AVG SLIPPAGE"
         headingTwo="RT TOTAL"
@@ -154,7 +154,7 @@ const Datacell = ({
   <div className={styles.expansionDataCellContainer}>
     <div
       className={styles.expansionDataTooltip}
-      style={{ bottom: toolTipLocation }}
+      style={{ marginBottom: toolTipLocation }}
     >
       {tooltip}
     </div>
