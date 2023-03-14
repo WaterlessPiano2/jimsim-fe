@@ -4,6 +4,7 @@ import styles from "@/styles/Home.module.css";
 import PlatformCell from "./PlatformCell";
 import GraphCell from "./GraphCell";
 import RowExpansion from "./RowExpansion";
+import Image from "next/image";
 
 interface Props {
   defiPoolMetrics: any;
@@ -32,7 +33,7 @@ function Table({ defiPoolMetrics }: Props) {
           volume: null,
           History: "amt",
           volTVL: null,
-          rewardToken: "R",
+          rewardToken: `R`,
           RTAPY: null,
         };
       }),
@@ -160,9 +161,19 @@ function Table({ defiPoolMetrics }: Props) {
                           )}
                           {cell.column.id.includes("History") && (
                             <GraphCell data={cell.value} />
+                          )}{" "}
+                          {cell.column.id === "rewardToken" && (
+                            <Image
+                              className={styles.rewardLogo}
+                              alt="RAY"
+                              src="/RAY.png"
+                              height={40}
+                              width={40}
+                            ></Image>
                           )}
                           {cell.column.id !== "platform" &&
                             !cell.column.id.includes("History") &&
+                            cell.column.id !== "rewardToken" &&
                             cell.render("Cell")}
                         </div>
                       </td>
