@@ -41,7 +41,7 @@ const ExpansionData = ({ data }: Props) => {
         tooltipTwo="Market"
         tooltipThree="Total Fees"
         headingFour="FEE APY"
-        valueFour={data?.fee_apy_7day || "nothing"}
+        valueFour={data?.fee_apy_7day || "0"}
         tooltipFour="Fee APY"
       />
       <DataRow
