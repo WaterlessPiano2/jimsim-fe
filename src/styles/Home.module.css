@@ -119,7 +119,6 @@
   -webkit-transition: border .35s ease-in-out;
   transition: border .35s ease-in-out;
   width: 150px;
-  display: block;
   text-align: center;
 }
 
@@ -146,6 +145,7 @@
   white-space:break-spaces;
   line-height: 15px;
   text-align: start;
+  margin-top: 70px;
 }
 
 @media (prefers-color-scheme: dark) {
