@@ -29,7 +29,7 @@ function Table({ defiPoolMetrics }: Props) {
             row[`returns_${timeScale}`] || 0
           ).toFixed(2)}%`,
           ReturnsHistory: "uv",
-          TVL: Math.round(row?.tvl),
+          TVL: `$${Math.round(row?.tvl)}`,
           TVLHistory: "pv",
           risk: null,
           volume: null,
