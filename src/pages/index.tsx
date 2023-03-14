@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 import Table from "@/components/Table";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const DynamicHeader = dynamic(() => import("../components/Header"), {
   ssr: false,
@@ -15,33 +15,41 @@ interface Props {
 }
 
 export default function Home({ defiPoolMetrics }: Props) {
+  const [url, setUrl] = useState("https://jimsim-fe.vercel.app/");
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  });
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:url" content={url} />
+
         {/* <!-- COMMON TAGS --> */}
         <meta charSet="utf-8" />
         <title>JimSim</title>
         {/* <!-- Search Engine --/> */}
         <meta name="description" content="DeFi Analytics" />
-        <meta name="image" content="https://jimsim.io/dummy.png" />
+        <meta name="image" content={`${url}/github_logo.png`} />
         {/* <!-- Schema.org for Google --/> */}
         <meta itemProp="name" content="JimSim" />
         <meta itemProp="description" content="DeFi Analytics" />
-        <meta itemProp="image" content="https://jimsim.io/dummy.png" />
+        <meta itemProp="image" content={`${url}/github_logo.png`} />
         {/* <!-- Twitter --/> */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="Solana" />
         <meta name="twitter:title" content="JimSim" />
         <meta name="twitter:description" content="DeFi Analytics" />
         <meta name="twitter:site" content="@JimSimData" />
         <meta name="twitter:creator" content="@JimSimData" />
-        <meta name="twitter:image:src" content="https://jimsim.io/dummy.png" />
+        <meta name="twitter:image:src" content={`${url}/github_logo.png`} />
         {/* <!-- Open Graph general (Facebook, Pinterest & Google+) --/> */}
         <meta name="og:title" content="JimSim" />
         <meta name="og:description" content="DeFi Analytics" />
-        <meta name="og:image" content="https://jimsim.io/dummy.png" />
-        <meta name="og:url" content="https://jimsim.io" />
+        <meta name="og:image" content={`${url}/github_logo.png`} />
+        <meta name="og:url" content={`${url}`} />
         <meta name="og:site_name" content="JimSim" />
         <meta name="og:type" content="website"></meta>
       </Head>
