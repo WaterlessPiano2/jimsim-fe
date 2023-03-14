@@ -11,7 +11,7 @@ interface Props {
 }
 
 function Table({ defiPoolMetrics }: Props) {
-  const timeScale = "7days";
+  const timeScale = "7day";
 
   console.log(defiPoolMetrics);
   const mainTableData = React.useMemo(
@@ -25,9 +25,11 @@ function Table({ defiPoolMetrics }: Props) {
             logoTwo: `/${row?.token_b_symbol}.png`,
           },
           type: row?.product_type.replace(/([A-Z])/g, " $1").trim(),
-          returns: row[`returns_${timeScale}`],
+          returns: `${Number.parseFloat(
+            row[`returns_${timeScale}`] || 0
+          ).toFixed(2)}%`,
           ReturnsHistory: "uv",
-          TVL: row?.tvl,
+          TVL: Math.round(row?.tvl),
           TVLHistory: "pv",
           risk: null,
           volume: null,
@@ -35,6 +37,15 @@ function Table({ defiPoolMetrics }: Props) {
           volTVL: null,
           rewardToken: `R`,
           RTAPY: null,
+          expansionData: {
+            fee_apy_7day: row?.fee_apy_7day,
+            returns_7day: row?.returns_7day,
+            token_a_symbol: row?.token_a_symbol,
+            token_b_symbol: row?.token_b_symbol,
+            total_fee_7day: row?.total_fee_7day,
+            tokena_amount: row?.tokena_amount,
+            tokenb_amount: row?.tokenb_amount,
+          },
         };
       }),
     []
@@ -90,9 +101,16 @@ function Table({ defiPoolMetrics }: Props) {
         Header: "RT APY",
         accessor: "RTAPY" as const,
       },
+      {
+        Header: "expansionData",
+        accessor: "expansionData" as const,
+      },
     ],
     []
   );
+  const initialState = {
+    hiddenColumns: ["expansionData"],
+  };
 
   const {
     getTableProps,
@@ -102,13 +120,9 @@ function Table({ defiPoolMetrics }: Props) {
     prepareRow,
     state: { expanded },
   } = useTable(
-    {
-      columns,
-      data: mainTableData,
-    },
+    { initialState, columns, data: mainTableData },
     useExpanded // Use the useExpanded plugin hook
   );
-
   return (
     <div className={styles.main}>
       <table {...getTableProps()} className={styles.table}>
@@ -180,7 +194,9 @@ function Table({ defiPoolMetrics }: Props) {
                     );
                   })}
                 </tr>
-                {row.isExpanded && <RowExpansion />}
+                {row.isExpanded && (
+                  <RowExpansion data={row.original.expansionData} />
+                )}
               </>
             );
           })}

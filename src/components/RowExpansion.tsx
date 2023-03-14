@@ -2,12 +2,16 @@ import styles from "@/styles/Home.module.css";
 import ExpansionData from "./ExpansionData";
 import ExpansionGraph from "./ExpansionGraph";
 
-const RowExpansion = () => {
+interface Props {
+  data: any;
+}
+
+const RowExpansion = ({ data }: Props) => {
   return (
     <>
       <td colSpan={12}>
         <div className={styles.rowExpansionParagraphGroup}>
-          <ExpansionData />
+          <ExpansionData data={data} />
           <ExpansionGraph data="uv" />
         </div>
         <div className={styles.rowExpansionParagraphGroup}>

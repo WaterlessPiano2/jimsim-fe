@@ -1,6 +1,11 @@
 import styles from "@/styles/Home.module.css";
 
-const ExpansionData = () => {
+interface Props {
+  data: any;
+}
+
+const ExpansionData = ({ data }: Props) => {
+  console.log(data);
   return (
     <div className={styles.expansionData}>
       <DataRow
@@ -10,8 +15,12 @@ const ExpansionData = () => {
         headingTwo="AMOUNT T/A"
         headingThree="AMOUNT T/B"
         valueOne="$1.54B"
-        valueTwo="USDC 0.77B"
-        valueThree="USDT 0.77B"
+        valueTwo={`${data?.token_a_symbol || "$"} ${Math.round(
+          data?.tokena_amount
+        )} `}
+        valueThree={`${data?.token_b_symbol || "$"} ${Math.round(
+          data?.tokenb_amount
+        )} `}
         tooltipOne="Total value locked (TVL) is the overall value of deposited crypto assets"
         tooltipTwo="Amount of token A"
         tooltipThree="Amount of token B"
@@ -32,7 +41,7 @@ const ExpansionData = () => {
         tooltipTwo="Market"
         tooltipThree="Total Fees"
         headingFour="FEE APY"
-        valueFour="1.53%"
+        valueFour={data?.fee_apy_7day || "nothing"}
         tooltipFour="Fee APY"
       />
       <DataRow
