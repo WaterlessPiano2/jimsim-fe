@@ -6,6 +6,8 @@ interface Props {
 
 const ExpansionData = ({ data }: Props) => {
   console.log(data);
+  let formatter = Intl.NumberFormat("en", { notation: "compact" });
+
   return (
     <div className={styles.expansionData}>
       <DataRow
@@ -15,10 +17,10 @@ const ExpansionData = ({ data }: Props) => {
         headingTwo="AMOUNT T/A"
         headingThree="AMOUNT T/B"
         valueOne="$1.54B"
-        valueTwo={`${data?.token_a_symbol || "$"} ${Math.round(
+        valueTwo={`${data?.token_a_symbol || "$"} ${formatter.format(
           data?.tokena_amount
         )} `}
-        valueThree={`${data?.token_b_symbol || "$"} ${Math.round(
+        valueThree={`${data?.token_b_symbol || "$"} ${formatter.format(
           data?.tokenb_amount
         )} `}
         tooltipOne="Total value locked (TVL) is the overall value of deposited crypto assets"
