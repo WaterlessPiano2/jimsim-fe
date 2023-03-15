@@ -37,13 +37,13 @@ const ExpansionData = ({ data }: Props) => {
         headingTwo="MARKET"
         headingThree="TOTAL FEES"
         valueOne="0.52%"
-        valueTwo={`${(Number(data?.market_7d) || 0).toFixed(2)}%`}
+        valueTwo={`${(parseFloat(data?.market_7d) || 0).toFixed(2)}%`}
         valueThree="$334.604"
         tooltipOne="A return is the change in price of an asset over time"
         tooltipTwo="Market"
         tooltipThree="Total Fees"
         headingFour="FEE APY"
-        valueFour={(Number(data?.fee_apy_7day) || 0).toFixed(2)}
+        valueFour={(parseFloat(data?.fee_apy_7day) || 0).toFixed(2)}
         tooltipFour="Fee APY"
       />
       <DataRow

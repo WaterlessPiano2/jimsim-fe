@@ -26,10 +26,10 @@ function Table({ defiPoolMetrics }: Props) {
             logoOne: `/${row?.token_a_symbol}.png`,
             logoTwo: `/${row?.token_b_symbol}.png`,
           },
-          type: row?.product_type.replace(/([A-Z])/g, " $1").trim(),
-          returns: `${Number.parseFloat(
-            row[`returns_${timeScale}`] || 0
-          ).toFixed(2)}%`,
+          type: "AMM", //row?.product_type.replace(/([A-Z])/g, " $1").trim(),
+          returns: `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(
+            2
+          )}%`,
           ReturnsHistory: "uv",
           TVL: `$${formatter.format(row?.tvl)}`,
           TVLHistory: "pv",
@@ -70,7 +70,7 @@ function Table({ defiPoolMetrics }: Props) {
         accessor: "returns" as const,
       },
       {
-        Header: "Returns History",
+        Header: "History",
         accessor: "ReturnsHistory" as const,
       },
       {
@@ -78,7 +78,7 @@ function Table({ defiPoolMetrics }: Props) {
         accessor: "TVL" as const,
       },
       {
-        Header: "TVL History",
+        Header: "History",
         accessor: "TVLHistory" as const,
       },
       {
@@ -94,7 +94,7 @@ function Table({ defiPoolMetrics }: Props) {
         accessor: "History" as const,
       },
       {
-        Header: "Vol/TVL",
+        Header: "VOL/TVL",
         accessor: "volTVL" as const,
       },
       {
