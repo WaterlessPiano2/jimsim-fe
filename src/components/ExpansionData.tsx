@@ -37,7 +37,7 @@ const ExpansionData = ({ data }: Props) => {
         headingTwo="MARKET"
         headingThree="TOTAL FEES"
         valueOne="0.52%"
-        valueTwo="2.52%"
+        valueTwo={`${data?.market_7d?.toFixed(2) || 0}%`}
         valueThree="$334.604"
         tooltipOne="A return is the change in price of an asset over time"
         tooltipTwo="Market"

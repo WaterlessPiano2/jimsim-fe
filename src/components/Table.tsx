@@ -47,6 +47,8 @@ function Table({ defiPoolMetrics }: Props) {
             total_fee_7day: row?.total_fee_7day,
             tokena_amount: row?.tokena_amount,
             tokenb_amount: row?.tokenb_amount,
+            market_24h: row?.market_24h,
+            market_7d: row?.market_7d,
           },
         };
       }),
