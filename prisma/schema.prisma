@@ -25,4 +25,6 @@ view defi_pool_metrics_ui_view {
   returns_7day    Decimal?  @db.Decimal
   total_fee_7day  Decimal?  @db.Decimal
   fee_apy_7day    Decimal?  @db.Decimal
+  market_7d       Decimal?  @db.Decimal
+  market_24h      Decimal?  @db.Decimal
 }
