@@ -145,7 +145,6 @@
   white-space:break-spaces;
   line-height: 15px;
   text-align: start;
-  margin-top: 70px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -159,6 +158,12 @@
   visibility: visible;
   opacity:1;
 }
+
+.rewardLogo:hover .expansionDataTooltip {
+  visibility: visible;
+  opacity:1;
+}
+
 
 .expansionDataCellTitle{
   font-weight: 500;

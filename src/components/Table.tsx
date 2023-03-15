@@ -181,13 +181,20 @@ function Table({ defiPoolMetrics }: Props) {
                             <GraphCell data={cell.value} />
                           )}{" "}
                           {cell.column.id === "rewardToken" && (
-                            <Image
-                              className={styles.rewardLogo}
-                              alt="RAY"
-                              src="/RAY.png"
-                              height={40}
-                              width={40}
-                            ></Image>
+                            <div className={styles.rewardLogo}>
+                              <div
+                                className={styles.expansionDataTooltip}
+                                style={{ marginTop: -40, marginLeft: -20 }}
+                              >
+                                Raydiyum
+                              </div>
+                              <Image
+                                alt="RAY"
+                                src="/RAY.png"
+                                height={40}
+                                width={40}
+                              ></Image>{" "}
+                            </div>
                           )}
                           {cell.column.id !== "platform" &&
                             !cell.column.id.includes("History") &&

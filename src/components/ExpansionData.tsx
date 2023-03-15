@@ -164,7 +164,9 @@ const Datacell = ({
 }: cellProps) => (
   <>
     <div className={styles.expansionDataCellContainer}>
-      <div className={styles.expansionDataTooltip}>{tooltip}</div>
+      <div className={styles.expansionDataTooltip} style={{ marginTop: 70 }}>
+        {tooltip}
+      </div>
       <div className={styles.expansionDataCellTitle}>{heading}</div>
       <div className={styles.expansionDataCellValue} style={{ color: color }}>
         {value}
