@@ -10,6 +10,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-const data = await prisma.defi_pool_metrics_ui_view.findMany({  distinct: ['pool_name'], orderBy:{txn_time:'asc'}})
+const data = await prisma.defi_pool_metrics_ui_view.findMany({  distinct: ['pool_name'], orderBy:{txn_time:'desc'}})
   res.status(200).json(data)
 }
