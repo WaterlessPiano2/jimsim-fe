@@ -27,4 +27,9 @@ view defi_pool_metrics_ui_view {
   fee_apy_7day    Decimal?  @db.Decimal
   market_7d       Decimal?  @db.Decimal
   market_24h      Decimal?  @db.Decimal
+  lp_volatility             Decimal? @db.Decimal
+  dd_pcnt                   Decimal? @db.Decimal
+  token_a_avg_slippage_pcnt Decimal? @db.Decimal
+  token_b_avg_slippage_pcnt Decimal? @db.Decimal
+  sharpe_ratio              Decimal? @db.Decimal
 }
