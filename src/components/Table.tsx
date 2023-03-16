@@ -5,7 +5,7 @@ import PlatformCell from "./PlatformCell";
 import GraphCell from "./GraphCell";
 import RowExpansion from "./RowExpansion";
 import Image from "next/image";
-import { formatter, hasData } from "@/utils/utils";
+import { displayData, formatter } from "@/utils/utils";
 
 interface Props {
   defiPoolMetrics: any;
@@ -27,11 +27,16 @@ function Table({ defiPoolMetrics }: Props) {
             logoTwo: `/${row?.token_b_symbol}.png`,
           },
           type: "AMM", //row?.product_type.replace(/([A-Z])/g, " $1").trim(),
-          returns: hasData(row[`returns_${timeScale}`])
-            ? `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(2)}%`
-            : "No Data",
+          returns: displayData(
+            row[`returns_${timeScale}`],
+            `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(2)}%`,
+            "",
+            "%"
+          ),
+          // ? `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(2)}%`
+          // : "No Data",
           ReturnsHistory: "uv",
-          TVL: hasData(row.tvl) ? `$${formatter.format(row?.tvl)}` : "No Data",
+          TVL: displayData(row.tvl, `$${formatter.format(row?.tvl)}`, "$", ""),
           TVLHistory: "pv",
           risk: "No Data",
           volume: "No Data",

@@ -1,5 +1,5 @@
 import styles from "@/styles/Home.module.css";
-import { hasData, formatter } from "@/utils/utils";
+import { formatter, displayData } from "@/utils/utils";
 
 interface Props {
   data: any;
@@ -17,23 +17,28 @@ const ExpansionData = ({ data }: Props) => {
         headingOne="TVL"
         headingTwo="AMOUNT T/A"
         headingThree="AMOUNT T/B"
-        valueOne={
-          hasData(data?.tvl) ? `$${formatter.format(data?.tvl)}` : "No Data"
-        }
-        valueTwo={
-          hasData(data?.tokena_amount)
-            ? `${data?.token_a_symbol || "$"} ${formatter.format(
-                data?.tokena_amount
-              )}`
-            : "No Data"
-        }
-        valueThree={
-          hasData(data?.tokenb_amount)
-            ? `${data?.token_b_symbol || "$"} ${formatter.format(
-                data?.tokenb_amount
-              )}`
-            : "No Data"
-        }
+        valueOne={displayData(
+          data?.tvl,
+          `$${formatter.format(data?.tvl)}`,
+          "$",
+          ""
+        )}
+        valueTwo={displayData(
+          data?.tokena_amount,
+          `${data?.token_a_symbol || "$"} ${formatter.format(
+            data?.tokena_amount
+          )}`,
+          data?.token_a_symbol || "$",
+          ""
+        )}
+        valueThree={displayData(
+          data?.tokenb_amount,
+          `${data?.token_b_symbol || "$"} ${formatter.format(
+            data?.tokenb_amount
+          )}`,
+          data?.token_b_symbol || "$",
+          ""
+        )}
         tooltipOne="Total value locked (TVL) is the overall value of deposited crypto assets"
         tooltipTwo="Amount of token A"
         tooltipThree="Amount of token B"
@@ -47,30 +52,34 @@ const ExpansionData = ({ data }: Props) => {
         headingOne="RETURNS"
         headingTwo="MARKET"
         headingThree="TOTAL FEES"
-        valueOne={
-          hasData(data[`returns_${timeScale}`])
-            ? `${parseFloat(data[`returns_${timeScale}`] || 0).toFixed(2)}%`
-            : "No Data"
-        }
-        valueTwo={
-          hasData(data?.market_7d)
-            ? `${(parseFloat(data?.market_7d) || 0).toFixed(2)}%`
-            : "No Data"
-        } // asked for an update on 7d - 7 day
-        valueThree={
-          hasData(data[`total_fee_${timeScale}`])
-            ? `$${formatter.format(data[`total_fee_${timeScale}`])}`
-            : "No Data"
-        }
+        valueOne={displayData(
+          data[`returns_${timeScale}`],
+          `${parseFloat(data[`returns_${timeScale}`] || 0).toFixed(2)}%`,
+          "",
+          "%"
+        )}
+        valueTwo={displayData(
+          data?.market_7d,
+          `${(parseFloat(data?.market_7d) || 0).toFixed(2)}%`,
+          "",
+          "%"
+        )} // asked for an update on 7d - 7 day
+        valueThree={displayData(
+          data[`total_fee_${timeScale}`],
+          `$${formatter.format(data[`total_fee_${timeScale}`])}`,
+          "$",
+          ""
+        )}
         tooltipOne="A return is the change in price of an asset over time"
         tooltipTwo="Market"
         tooltipThree="Total Fees"
         headingFour="FEE APY"
-        valueFour={
-          hasData(data?.[`fee_apy_${timeScale}`])
-            ? (parseFloat(data?.[`fee_apy_${timeScale}`]) || 0).toFixed(2)
-            : "No Data"
-        }
+        valueFour={displayData(
+          data?.[`fee_apy_${timeScale}`],
+          (parseFloat(data?.[`fee_apy_${timeScale}`]) || 0).toFixed(2),
+          "",
+          "%"
+        )}
         tooltipFour="Fee APY"
       />
       <DataRow
@@ -79,16 +88,18 @@ const ExpansionData = ({ data }: Props) => {
         headingOne="VOLATILITIY"
         headingTwo="SHARPE RATIO"
         headingThree="SORTINO RATIO"
-        valueOne={
-          hasData(data?.lp_volatility)
-            ? `${(parseFloat(data?.lp_volatility) || 0).toFixed(2)}%`
-            : "No Data"
-        }
-        valueTwo={
-          hasData(data?.sharpe_ratio)
-            ? `${(parseFloat(data?.sharpe_ratio) || 0).toFixed(2)}`
-            : "No Data"
-        }
+        valueOne={displayData(
+          data?.lp_volatility,
+          `${(parseFloat(data?.lp_volatility) || 0).toFixed(2)}`,
+          "",
+          ""
+        )}
+        valueTwo={displayData(
+          data?.sharpe_ratio,
+          `${(parseFloat(data?.sharpe_ratio) || 0).toFixed(2)}`,
+          "",
+          ""
+        )}
         valueThree="No Data"
         tooltipOne="Volatility is a measure of how much the price of an asset has moved up or down over time"
         tooltipTwo="The Sharpe ratio is a measure of risk-adjusted return"
@@ -105,11 +116,12 @@ const ExpansionData = ({ data }: Props) => {
         headingThree="MAX DD"
         valueOne="No Data"
         valueTwo="No Data"
-        valueThree={
-          hasData(data?.dd_pcnt)
-            ? `${(parseFloat(data?.dd_pcnt) || 0).toFixed(2)}`
-            : "No Data"
-        }
+        valueThree={displayData(
+          data?.dd_pcnt,
+          `${(parseFloat(data?.dd_pcnt) || 0).toFixed(2)}`,
+          "",
+          ""
+        )}
         tooltipOne="Slippage refers to the difference between the expected price of a trade and the price at which the trade is executed"
         tooltipTwo="Reward token total"
         tooltipThree="A maximum drawdown is the maximum observed loss from a peak to a trough, before a new peak is attained"
