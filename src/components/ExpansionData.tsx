@@ -118,9 +118,9 @@ const ExpansionData = ({ data }: Props) => {
         valueTwo="No Data"
         valueThree={displayData(
           data?.dd_pcnt,
-          `${(parseFloat(data?.dd_pcnt) || 0).toFixed(2)}`,
+          `${(parseFloat(data?.dd_pcnt) || 0).toFixed(2)}%`,
           "",
-          ""
+          "%"
         )}
         tooltipOne="Slippage refers to the difference between the expected price of a trade and the price at which the trade is executed"
         tooltipTwo="Reward token total"
