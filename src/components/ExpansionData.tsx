@@ -59,8 +59,8 @@ const ExpansionData = ({ data }: Props) => {
           "%"
         )}
         valueTwo={displayData(
-          data?.market_7d,
-          `${(parseFloat(data?.market_7d) || 0).toFixed(2)}%`,
+          data?.market_7day,
+          `${(parseFloat(data?.market_7day) || 0).toFixed(2)}%`,
           "",
           "%"
         )} // asked for an update on 7d - 7 day

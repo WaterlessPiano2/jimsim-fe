@@ -9,27 +9,27 @@ datasource db {
 }
 
 view defi_pool_metrics_ui_view {
-  txn_time        DateTime? @db.Timestamp(6)
-  pool_account    String?   @db.VarChar(64)
-  product_type    String?   @db.VarChar(100)
-  project_name    String    @unique @db.VarChar(100)
-  pool_name       String?   @db.VarChar(100)
-  token_a_symbol  String?   @db.VarChar(100)
-  token_b_symbol  String?   @db.VarChar(100)
-  reward_a_symbol String?   @db.VarChar(20)
-  reward_b_symbol String?   @db.VarChar(20)
-  tvl             Decimal?  @db.Decimal
-  tokena_amount   Decimal?  @db.Decimal
-  tokenb_amount   Decimal?  @db.Decimal
-  staked_tvl      Decimal?  @db.Decimal
-  returns_7day    Decimal?  @db.Decimal
-  total_fee_7day  Decimal?  @db.Decimal
-  fee_apy_7day    Decimal?  @db.Decimal
-  market_7d       Decimal?  @db.Decimal
-  market_24h      Decimal?  @db.Decimal
-  lp_volatility             Decimal? @db.Decimal
-  dd_pcnt                   Decimal? @db.Decimal
-  token_a_avg_slippage_pcnt Decimal? @db.Decimal
-  token_b_avg_slippage_pcnt Decimal? @db.Decimal
-  sharpe_ratio              Decimal? @db.Decimal
+  txn_time                  DateTime? @db.Timestamp(6)
+  pool_account              String?   @db.VarChar(64)
+  product_type              String?   @db.VarChar(100)
+  project_name              String    @unique @db.VarChar(100)
+  pool_name                 String?   @db.VarChar(100)
+  token_a_symbol            String?   @db.VarChar(100)
+  token_b_symbol            String?   @db.VarChar(100)
+  reward_a_symbol           String?   @db.VarChar(20)
+  reward_b_symbol           String?   @db.VarChar(20)
+  tvl                       Decimal?  @db.Decimal
+  tokena_amount             Decimal?  @db.Decimal
+  tokenb_amount             Decimal?  @db.Decimal
+  staked_tvl                Decimal?  @db.Decimal
+  returns_7day              Decimal?  @db.Decimal
+  total_fee_7day            Decimal?  @db.Decimal
+  fee_apy_7day              Decimal?  @db.Decimal
+  market_7day               Decimal?  @db.Decimal
+  market_24h                Decimal?  @db.Decimal
+  lp_volatility             Decimal?  @db.Decimal
+  dd_pcnt                   Decimal?  @db.Decimal
+  token_a_avg_slippage_pcnt Decimal?  @db.Decimal
+  token_b_avg_slippage_pcnt Decimal?  @db.Decimal
+  sharpe_ratio              Decimal?  @db.Decimal
 }
