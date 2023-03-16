@@ -38,7 +38,12 @@ function Table({ defiPoolMetrics }: Props) {
           ReturnsHistory: "uv",
           TVL: displayData(row.tvl, `$${formatter.format(row?.tvl)}`, "$", ""),
           TVLHistory: "pv",
-          risk: "No Data",
+          risk: displayData(
+            row?.sharpe_ratio,
+            `${(parseFloat(row?.sharpe_ratio) || 0).toFixed(2)}`,
+            "",
+            ""
+          ),
           volume: "No Data",
           History: "amt",
           volTVL: "No Data",

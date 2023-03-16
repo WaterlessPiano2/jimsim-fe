@@ -1,5 +1,10 @@
 import styles from "@/styles/Home.module.css";
-import { formatter, displayData } from "@/utils/utils";
+import {
+  formatter,
+  displayData,
+  hasData,
+  isLessThanDisplayable,
+} from "@/utils/utils";
 
 interface Props {
   data: any;
@@ -114,7 +119,22 @@ const ExpansionData = ({ data }: Props) => {
         headingOne="AVG SLIPPAGE"
         headingTwo="RT TOTAL"
         headingThree="MAX DD"
-        valueOne="No Data"
+        valueOne={
+          hasData(data?.token_b_avg_slippage_pcnt) &&
+          hasData(data?.token_b_avg_slippage_pcnt)
+            ? isLessThanDisplayable(
+                (parseFloat(data.token_a_avg_slippage_pcnt) +
+                  parseFloat(data.token_b_avg_slippage_pcnt)) /
+                  2
+              )
+              ? ">0.01%"
+              : `${(
+                  (parseFloat(data.token_a_avg_slippage_pcnt) +
+                    parseFloat(data.token_b_avg_slippage_pcnt)) /
+                  2
+                ).toFixed(2)}%`
+            : "No Data"
+        }
         valueTwo="No Data"
         valueThree={displayData(
           data?.dd_pcnt,
