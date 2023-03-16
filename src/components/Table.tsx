@@ -5,6 +5,7 @@ import PlatformCell from "./PlatformCell";
 import GraphCell from "./GraphCell";
 import RowExpansion from "./RowExpansion";
 import Image from "next/image";
+import { formatter, hasData } from "@/utils/utils";
 
 interface Props {
   defiPoolMetrics: any;
@@ -14,7 +15,6 @@ function Table({ defiPoolMetrics }: Props) {
   const timeScale = "7day";
 
   console.log(defiPoolMetrics);
-  let formatter = Intl.NumberFormat("en", { notation: "compact" });
 
   const mainTableData = React.useMemo(
     () =>
@@ -27,29 +27,19 @@ function Table({ defiPoolMetrics }: Props) {
             logoTwo: `/${row?.token_b_symbol}.png`,
           },
           type: "AMM", //row?.product_type.replace(/([A-Z])/g, " $1").trim(),
-          returns: `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(
-            2
-          )}%`,
+          returns: hasData(row[`returns_${timeScale}`])
+            ? `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(2)}%`
+            : "No Data",
           ReturnsHistory: "uv",
-          TVL: `$${formatter.format(row?.tvl)}`,
+          TVL: hasData(row.tvl) ? `$${formatter.format(row?.tvl)}` : "No Data",
           TVLHistory: "pv",
-          risk: null,
-          volume: null,
+          risk: "No Data",
+          volume: "No Data",
           History: "amt",
-          volTVL: null,
+          volTVL: "No Data",
           rewardToken: `R`,
-          RTAPY: null,
-          expansionData: {
-            fee_apy_7day: row?.fee_apy_7day,
-            returns_7day: row?.returns_7day,
-            token_a_symbol: row?.token_a_symbol,
-            token_b_symbol: row?.token_b_symbol,
-            total_fee_7day: row?.total_fee_7day,
-            tokena_amount: row?.tokena_amount,
-            tokenb_amount: row?.tokenb_amount,
-            market_24h: row?.market_24h,
-            market_7d: row?.market_7d,
-          },
+          RTAPY: "No Data",
+          expansionData: row,
         };
       }),
     []
