@@ -1,54 +1,20 @@
 import { LineChart, Line } from "recharts";
-const displayData = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 250,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 200,
-  },
-];
 
 interface props {
-  data: string;
+  data: any;
 }
-
 const GraphCell = ({ data }: props) => {
+  // console.log(data);
+  if (data === "No Data") {
+    return <div>No Data</div>;
+  }
+
+  const graphColor = () => {
+    if (parseFloat(data?.at(0).tvl) > parseFloat(data?.at(-1).tvl)) {
+      return "#FF0000";
+    } else return "#4CBB17";
+  };
+  
   return (
     <LineChart
       width={90}
@@ -58,14 +24,9 @@ const GraphCell = ({ data }: props) => {
         right: 1,
         left: 1,
       }}
-      data={displayData}
+      data={data}
     >
-      <Line
-        type="monotone"
-        dataKey={data}
-        stroke={data === "uv" ? "	#4CBB17" : "#FF0000"}
-        dot={<></>}
-      />
+      <Line type="monotone" dataKey={"tvl"} stroke={graphColor()} dot={<></>} />
     </LineChart>
   );
 };

@@ -9,16 +9,18 @@ import { displayData, formatter } from "@/utils/utils";
 
 interface Props {
   defiPoolMetrics: any;
+  weekGraphData: any;
 }
 
-function Table({ defiPoolMetrics }: Props) {
+function Table({ defiPoolMetrics, weekGraphData }: Props) {
   const timeScale = "7day";
-
-  console.log(defiPoolMetrics);
 
   const mainTableData = React.useMemo(
     () =>
       [...defiPoolMetrics]?.map((row) => {
+        const filteredWeekGraphData = weekGraphData?.filter(
+          (t: any) => t?.pool_account === row?.pool_account
+        );
         return {
           platform: {
             name: row?.pool_name,
@@ -33,11 +35,9 @@ function Table({ defiPoolMetrics }: Props) {
             "",
             "%"
           ),
-          // ? `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(2)}%`
-          // : "No Data",
-          ReturnsHistory: "uv",
+          ReturnsHistory: "No Data",
           TVL: displayData(row.tvl, `$${formatter.format(row?.tvl)}`, "$", ""),
-          TVLHistory: "pv",
+          TVLHistory: filteredWeekGraphData,
           risk: displayData(
             row?.sharpe_ratio,
             `${(parseFloat(row?.sharpe_ratio) || 0).toFixed(2)}`,
@@ -45,7 +45,7 @@ function Table({ defiPoolMetrics }: Props) {
             ""
           ),
           volume: "No Data",
-          History: "amt",
+          History: "No Data",
           volTVL: "No Data",
           rewardToken: `R`,
           RTAPY: "No Data",
@@ -179,7 +179,7 @@ function Table({ defiPoolMetrics }: Props) {
                           )}
                           {cell.column.id.includes("History") && (
                             <GraphCell data={cell.value} />
-                          )}{" "}
+                          )}
                           {cell.column.id === "rewardToken" && (
                             <div className={styles.rewardLogo}>
                               <div

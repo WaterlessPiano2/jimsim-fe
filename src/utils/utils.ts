@@ -12,9 +12,7 @@ const displayData = (value:any, formattedValue:any, prefix:any, postfix:string )
       return `${prefix}<0.01${postfix}`
     } return formattedValue
   }
-  
-  console.log(value, ' NUll')
-  return 'No Data'
+    return 'No Data'
 }
 
 export{hasData, formatter, isLessThanDisplayable, displayData}

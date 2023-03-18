@@ -12,7 +12,6 @@ interface Props {
 
 const ExpansionData = ({ data }: Props) => {
   const timeScale = "7day";
-  console.log(data);
 
   return (
     <div className={styles.expansionData}>

@@ -12,9 +12,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 interface Props {
   defiPoolMetrics: any;
+  weekGraphData: any;
 }
 
-export default function Home({ defiPoolMetrics }: Props) {
+export default function Home({ defiPoolMetrics, weekGraphData }: Props) {
   const [url, setUrl] = useState("https://jimsim-fe.vercel.app/");
 
   useEffect(() => {
@@ -71,7 +72,10 @@ export default function Home({ defiPoolMetrics }: Props) {
       </Head>
       <DynamicHeader />
       <main className={inter.className}>
-        <Table defiPoolMetrics={defiPoolMetrics} />
+        <Table
+          defiPoolMetrics={defiPoolMetrics}
+          weekGraphData={weekGraphData}
+        />
       </main>
     </>
   );
@@ -82,21 +86,49 @@ export async function getServerSideProps(context: any) {
     "Cache-Control",
     "public, s-maxage=10, stale-while-revalidate=59"
   );
-  console.log(context.params);
-  console.log(context.resolvedUrl);
-  console.log(context.req.headers.host);
-  const baseURL = context.req.headers.host;
-  const URL = `http://${baseURL}/api/defi-pool-metrics`;
-  const res = await fetch(URL);
-  const defiPoolMetrics = await res.json();
 
-  if (!defiPoolMetrics) {
-    return {
-      notFound: true,
-    };
+  const baseURL = context.req.headers.host;
+  let defiPoolMetrics;
+  let weekGraphData;
+  let dayGraphData;
+  const URL = `http://${baseURL}/api/defi-pool-metrics`;
+  const weekGraphURL = `http://${baseURL}/api/defi-pool-metrics?&graphtimeframe=7d`;
+  const dayGraphURL = `http://${baseURL}/api/defi-pool-metrics?&graphtimeframe=24h`;
+
+  try {
+    const res = await fetch(URL);
+    defiPoolMetrics = await res.json();
+
+    if (!defiPoolMetrics) {
+      throw new Error("Unable to fetch any metrics.");
+    }
+  } catch (e: any) {
+    console.log("error all data");
+  }
+
+  try {
+    const weekGraphRes = await fetch(weekGraphURL);
+    weekGraphData = await weekGraphRes.json();
+
+    if (!weekGraphData) {
+      throw new Error("Unable to fetch 7 day graphs.");
+    }
+  } catch (e: any) {
+    console.log("error week graph");
+  }
+
+  try {
+    const dayGraphRes = await fetch(dayGraphURL);
+    dayGraphData = await dayGraphRes.json();
+
+    if (!dayGraphData) {
+      throw new Error("Unable to fetch 1 day graphs.");
+    }
+  } catch (e: any) {
+    console.log("error day graph");
   }
 
   return {
-    props: { defiPoolMetrics: defiPoolMetrics },
+    props: { defiPoolMetrics: defiPoolMetrics, weekGraphData: weekGraphData },
   };
 }
