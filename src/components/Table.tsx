@@ -35,7 +35,8 @@ function Table({
             (t: any) => t?.pool_account === row?.pool_account
           );
         }
-
+        row["filteredGraphData"] = filteredGraphData;
+        row["timeframe"] = timeframe;
         return {
           platform: {
             name: row?.pool_name,

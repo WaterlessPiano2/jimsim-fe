@@ -23,7 +23,7 @@ if (req.query.graphtimeframe ){
         dd_pcnt:true,
         sharpe_ratio:true,
         txn_time:true,
-      },orderBy:{txn_time:'desc'}
+      },orderBy:{txn_time:'asc'}
     })
   
 if(!data || data.length <1){
@@ -51,7 +51,7 @@ if(!data || data.length <1){
         dd_pcnt:true,
         sharpe_ratio:true,
         txn_time:true,
-      },orderBy:{txn_time:'desc'}
+      },orderBy:{txn_time:'asc'}
     })
 
     if(!data || data.length <1){

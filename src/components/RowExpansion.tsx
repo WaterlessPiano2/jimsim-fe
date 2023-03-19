@@ -1,4 +1,5 @@
 import styles from "@/styles/Home.module.css";
+import { useState } from "react";
 import ExpansionData from "./ExpansionData";
 import ExpansionGraph from "./ExpansionGraph";
 
@@ -7,12 +8,15 @@ interface Props {
 }
 
 const RowExpansion = ({ data }: Props) => {
+  const [plot1, setPlot1] = useState("tokena_amount");
+  const [plot2, setPlot2] = useState("tokenb_amount");
+
   return (
     <>
       <td colSpan={12}>
         <div className={styles.rowExpansionParagraphGroup}>
           <ExpansionData data={data} />
-          <ExpansionGraph data="uv" />
+          <ExpansionGraph data={data} plot1={plot1} plot2={plot2} />
         </div>
         <div className={styles.rowExpansionParagraphGroup}>
           <div className={styles.rowExpansionParagraph}>
