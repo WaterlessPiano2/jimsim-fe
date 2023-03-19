@@ -15,7 +15,13 @@ const RowExpansion = ({ data }: Props) => {
     <>
       <td colSpan={12}>
         <div className={styles.rowExpansionParagraphGroup}>
-          <ExpansionData data={data} />
+          <ExpansionData
+            data={data}
+            selectedOne={plot1}
+            selectedTwo={plot2}
+            setSelectedOne={(n) => setPlot1(n)}
+            setSelectedTwo={() => setPlot2}
+          />
           <ExpansionGraph data={data} plot1={plot1} plot2={plot2} />
         </div>
         <div className={styles.rowExpansionParagraphGroup}>

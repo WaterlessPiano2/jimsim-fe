@@ -8,11 +8,14 @@ import {
 
 interface Props {
   data: any;
+  selectedOne: string;
+  setSelectedOne: (value: string) => void;
+  setSelectedTwo: (value: string) => void;
+  selectedTwo: string;
 }
 
-const ExpansionData = ({ data }: Props) => {
+const ExpansionData = ({ data, setSelectedOne, selectedOne }: Props) => {
   const timeScale = "7day";
-
   return (
     <div className={styles.expansionData}>
       <DataRow
@@ -49,6 +52,12 @@ const ExpansionData = ({ data }: Props) => {
         headingFour="STAKED TVL"
         valueFour="No Data"
         tooltipFour="Staked total value locked"
+        keyOne="tvl"
+        keyTwo="tokena_amount"
+        keyThree="tokenb_amount"
+        keyFour="staked_tvl"
+        selectedOne={selectedOne}
+        setSelectedOne={setSelectedOne}
       />
       <DataRow
         toolTipLocation="-10px"
@@ -85,6 +94,16 @@ const ExpansionData = ({ data }: Props) => {
           "%"
         )}
         tooltipFour="Fee APY"
+        // keyOne={`returns_${timeScale}`}
+        // keyTwo={`market_${timeScale}`}
+        // keyThree={`total_fee_${timeScale}`}
+        // keyFour={`fee_apy_${timeScale}`}
+        keyOne={``}
+        keyTwo={``}
+        keyThree={``}
+        keyFour={``}
+        selectedOne={selectedOne}
+        setSelectedOne={setSelectedOne}
       />
       <DataRow
         toolTipLocation="-10px"
@@ -111,6 +130,12 @@ const ExpansionData = ({ data }: Props) => {
         headingFour="TREYNOR RATIO"
         valueFour="No Data"
         tooltipFour="Treynor ratio is a risk-adjusted measurement of return based on systematic risk"
+        keyOne="lp_volatility"
+        keyTwo="sharpe_ratio"
+        keyThree=""
+        keyFour=""
+        selectedOne={selectedOne}
+        setSelectedOne={setSelectedOne}
       />
       <DataRow
         toolTipLocation="-10px"
@@ -147,6 +172,12 @@ const ExpansionData = ({ data }: Props) => {
         headingFour="RT APY"
         valueFour="No Data"
         tooltipFour="Reward token APY"
+        keyOne="average_slippage_pcnt"
+        keyTwo=""
+        keyThree="dd_pcnt"
+        keyFour=""
+        selectedOne={selectedOne}
+        setSelectedOne={setSelectedOne}
       />
     </div>
   );
@@ -167,6 +198,12 @@ interface rowProps {
   headingFour: string;
   valueFour: string;
   tooltipFour: string;
+  keyOne: string;
+  keyTwo: string;
+  keyThree: string;
+  keyFour: string;
+  selectedOne: string;
+  setSelectedOne: (value: string) => void;
 }
 
 const DataRow = ({
@@ -184,6 +221,12 @@ const DataRow = ({
   headingFour,
   valueFour,
   tooltipFour,
+  keyOne,
+  keyTwo,
+  keyThree,
+  keyFour,
+  selectedOne,
+  setSelectedOne,
 }: rowProps) => (
   <div className={styles.expansionDataRow}>
     <Datacell
@@ -192,6 +235,9 @@ const DataRow = ({
       value={valueOne}
       tooltip={tooltipOne}
       color={color}
+      dataKey={keyOne}
+      selectedOne={selectedOne}
+      setSelectedOne={setSelectedOne}
     />
     <Datacell
       toolTipLocation={toolTipLocation}
@@ -199,6 +245,9 @@ const DataRow = ({
       value={valueTwo}
       tooltip={tooltipTwo}
       color={color}
+      dataKey={keyTwo}
+      selectedOne={selectedOne}
+      setSelectedOne={setSelectedOne}
     />
     <Datacell
       toolTipLocation={toolTipLocation}
@@ -206,6 +255,9 @@ const DataRow = ({
       value={valueThree}
       tooltip={tooltipThree}
       color={color}
+      dataKey={keyThree}
+      selectedOne={selectedOne}
+      setSelectedOne={setSelectedOne}
     />
     <Datacell
       toolTipLocation={toolTipLocation}
@@ -213,6 +265,9 @@ const DataRow = ({
       value={valueFour}
       tooltip={tooltipFour}
       color={color}
+      dataKey={keyFour}
+      selectedOne={selectedOne}
+      setSelectedOne={setSelectedOne}
     />
   </div>
 );
@@ -223,6 +278,9 @@ interface cellProps {
   value: string;
   tooltip: string;
   toolTipLocation: string;
+  dataKey: string;
+  selectedOne: string;
+  setSelectedOne: (value: string) => void;
 }
 
 const Datacell = ({
@@ -231,9 +289,32 @@ const Datacell = ({
   value,
   tooltip,
   toolTipLocation,
-}: cellProps) => (
-  <>
-    <div className={styles.expansionDataCellContainer}>
+  dataKey,
+  selectedOne,
+  setSelectedOne,
+}: cellProps) => {
+  const clicked = (value: string, key: string) => {
+    if (!isDisabled(value) && key) {
+      setSelectedOne(key);
+    }
+  };
+
+  const isDisabled = (value: string) => {
+    if (!value || value === "No Data") return true;
+    return false;
+  };
+
+  return (
+    //pass selectedOne here and if it matches the key, make it selected
+    <div
+      style={
+        selectedOne === dataKey
+          ? { borderWidth: "3px", borderColor: "green" }
+          : {}
+      }
+      className={styles.expansionDataCellContainer}
+      onClick={() => clicked(value, dataKey)}
+    >
       <div className={styles.expansionDataTooltip} style={{ marginTop: 70 }}>
         {tooltip}
       </div>
@@ -242,7 +323,7 @@ const Datacell = ({
         {value}
       </div>
     </div>
-  </>
-);
+  );
+};
 
 export default ExpansionData;

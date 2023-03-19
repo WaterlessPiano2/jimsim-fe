@@ -15,9 +15,9 @@ interface props {
   plot1: string;
   plot2: string;
 }
-
 const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
-  console.log(data.filteredGraphData);
+  console.log("plot1: ", data);
+  // console.log(data.filteredGraphData);
 
   const formattedValues = [...data?.filteredGraphData].map((d: any) => {
     d["formattedDate"] =
@@ -51,23 +51,30 @@ const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
           label={{ value: "time", position: "top" }}
           angle={45}
         />
-        <YAxis dx={20} />
+        <YAxis dx={20} yAxisId={plot1} />
+        {/* <YAxis
+          yAxisId={plot2}
+          orientation="right"
+          dataKey={`formatted-${plot2}`} */}
+        />
         <Tooltip />
         <Legend />
         <Line
+          yAxisId={plot1}
           type="monotone"
           dataKey={plot1}
           stroke={"#4CBB17"}
           strokeWidth={3}
           dot={<></>}
         />{" "}
-        <Line
+        {/* <Line
+          yAxisId={plot2}
           type="monotone"
           dataKey={plot2}
           stroke={"#FF0000"}
           strokeWidth={3}
           dot={<></>}
-        />
+        /> */}
       </LineChart>
     </div>
   );
