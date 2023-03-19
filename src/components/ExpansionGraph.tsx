@@ -55,8 +55,8 @@ const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
         {/* <YAxis
           yAxisId={plot2}
           orientation="right"
-          dataKey={`formatted-${plot2}`} */}
-        />
+          dataKey={`formatted-${plot2}`}          />
+*/}
         <Tooltip />
         <Legend />
         <Line
