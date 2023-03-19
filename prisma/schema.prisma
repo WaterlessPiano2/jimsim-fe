@@ -21,7 +21,7 @@ view defi_pool_metrics_ui_view {
   tvl                       Decimal?  @db.Decimal
   tokena_amount             Decimal?  @db.Decimal
   tokenb_amount             Decimal?  @db.Decimal
-  staked_tvl                Decimal?  @db.Decimal
+  staked_tvl_7day           Decimal?  @db.Decimal
   returns_7day              Decimal?  @db.Decimal
   total_fee_7day            Decimal?  @db.Decimal
   fee_apy_7day              Decimal?  @db.Decimal
@@ -36,6 +36,8 @@ view defi_pool_metrics_ui_view {
   returns_24h               Decimal?  @db.Decimal
   total_fee_24h             Decimal?  @db.Decimal
   fee_apy_24h               Decimal?  @db.Decimal
+  vol_24h                   Decimal?  @db.Decimal
+  vol_7day                  Decimal?  @db.Decimal
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -67,6 +69,9 @@ view defi_pool_metrics_ui_7day_view {
   returns_24h               Decimal?  @db.Decimal
   total_fee_24h             Decimal?  @db.Decimal
   fee_apy_24h               Decimal?  @db.Decimal
+  average_slippage_pcnt     Decimal?  @db.Decimal
+  vol_24h                   Decimal?  @db.Decimal
+  vol_7day                  Decimal?  @db.Decimal
 }
 
 /// The underlying view does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
@@ -98,4 +103,7 @@ view defi_pool_metrics_ui_24h_view {
   returns_24h               Decimal?  @db.Decimal
   total_fee_24h             Decimal?  @db.Decimal
   fee_apy_24h               Decimal?  @db.Decimal
+  average_slippage_pcnt     Decimal?  @db.Decimal
+  vol_24h                   Decimal?  @db.Decimal
+  vol_7day                  Decimal?  @db.Decimal
 }
