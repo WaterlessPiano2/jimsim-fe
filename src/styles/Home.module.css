@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 2rem 1rem 6rem 1rem;
   min-height: 95vh;
   line-height: 2;
   overflow-x: scroll;
@@ -21,6 +21,46 @@
   flex-wrap: nowrap;
   flex-direction: row;
 }
+
+.ToggleContainer{
+  max-width: 1300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  line-height: 2;
+  margin: 100px auto 0 auto; 
+  border-radius: 10px;
+  border: solid 1px #E4E4E4;
+}
+
+.toggle{
+  cursor: pointer;
+  height:35px;
+  margin-left:20px;
+  border-radius: 10px;
+  padding:0px 20px 0px 20px;
+  display: flex;
+  border: solid 1px #E4E4E4;
+  height:40px;
+  align-items: center;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .ToggleContainer, .toggle {
+    background-color: #171c21;
+    border: solid 1px #3F4956;
+  }
+}
+
+.selected_toggle{
+  color:#1C76FD;
+  text-decoration: underline;
+}
+
 
 .header {
   font-weight: 100;

@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
+import styles from "@/styles/Home.module.css";
 import Table from "@/components/Table";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+import Toggle from "@/components/Toggle";
 
 const DynamicHeader = dynamic(() => import("../components/Header"), {
   ssr: false,
@@ -13,14 +15,24 @@ const inter = Inter({ subsets: ["latin"] });
 interface Props {
   defiPoolMetrics: any;
   weekGraphData: any;
+  dayGraphData: any;
 }
 
-export default function Home({ defiPoolMetrics, weekGraphData }: Props) {
+export default function Home({
+  defiPoolMetrics,
+  weekGraphData,
+  dayGraphData,
+}: Props) {
   const [url, setUrl] = useState("https://jimsim-fe.vercel.app/");
+  const [timeframe, setTimeFrame] = useState("7day");
 
   useEffect(() => {
     setUrl(window.location.href);
   });
+
+  const toggle = () => {
+    // setTimeFrame(timeframe === "24h" ? "7day" : "24h");
+  };
 
   return (
     <>
@@ -72,9 +84,17 @@ export default function Home({ defiPoolMetrics, weekGraphData }: Props) {
       </Head>
       <DynamicHeader />
       <main className={inter.className}>
+        <div className={styles.ToggleContainer}>
+          <Toggle
+            isRight={timeframe === "24h" ? true : false}
+            onClick={toggle}
+          />
+        </div>
         <Table
           defiPoolMetrics={defiPoolMetrics}
           weekGraphData={weekGraphData}
+          dayGraphData={dayGraphData}
+          timeframe={timeframe}
         />
       </main>
     </>
@@ -129,6 +149,10 @@ export async function getServerSideProps(context: any) {
   }
 
   return {
-    props: { defiPoolMetrics: defiPoolMetrics, weekGraphData: weekGraphData },
+    props: {
+      defiPoolMetrics: defiPoolMetrics,
+      weekGraphData: weekGraphData,
+      dayGraphData: dayGraphData,
+    },
   };
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTable, useExpanded } from "react-table";
 import styles from "@/styles/Home.module.css";
 import PlatformCell from "./PlatformCell";
@@ -6,21 +6,36 @@ import GraphCell from "./GraphCell";
 import RowExpansion from "./RowExpansion";
 import Image from "next/image";
 import { displayData, formatter } from "@/utils/utils";
+import Toggle from "./Toggle";
 
 interface Props {
   defiPoolMetrics: any;
   weekGraphData: any;
+  dayGraphData: any;
+  timeframe: string;
 }
 
-function Table({ defiPoolMetrics, weekGraphData }: Props) {
-  const timeScale = "7day";
-
+function Table({
+  defiPoolMetrics,
+  weekGraphData,
+  dayGraphData,
+  timeframe,
+}: Props) {
   const mainTableData = React.useMemo(
     () =>
       [...defiPoolMetrics]?.map((row) => {
-        const filteredWeekGraphData = weekGraphData?.filter(
-          (t: any) => t?.pool_account === row?.pool_account
-        );
+        let filteredGraphData;
+
+        if (timeframe === "7day") {
+          filteredGraphData = weekGraphData?.filter(
+            (t: any) => t?.pool_account === row?.pool_account
+          );
+        } else {
+          filteredGraphData = dayGraphData?.filter(
+            (t: any) => t?.pool_account === row?.pool_account
+          );
+        }
+
         return {
           platform: {
             name: row?.pool_name,
@@ -30,14 +45,14 @@ function Table({ defiPoolMetrics, weekGraphData }: Props) {
           },
           type: "AMM", //row?.product_type.replace(/([A-Z])/g, " $1").trim(),
           returns: displayData(
-            row[`returns_${timeScale}`],
-            `${parseFloat(row[`returns_${timeScale}`] || 0).toFixed(2)}%`,
+            row[`returns_${timeframe}`],
+            `${parseFloat(row[`returns_${timeframe}`] || 0).toFixed(2)}%`,
             "",
             "%"
           ),
           ReturnsHistory: "No Data",
           TVL: displayData(row.tvl, `$${formatter.format(row?.tvl)}`, "$", ""),
-          TVLHistory: filteredWeekGraphData,
+          TVLHistory: filteredGraphData,
           risk: displayData(
             row?.sharpe_ratio,
             `${(parseFloat(row?.sharpe_ratio) || 0).toFixed(2)}`,
