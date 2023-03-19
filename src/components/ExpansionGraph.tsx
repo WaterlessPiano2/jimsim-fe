@@ -16,9 +16,6 @@ interface props {
   plot2: string;
 }
 const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
-  console.log("plot1: ", plot1);
-  console.log(data.filteredGraphData);
-
   const formattedValues = [...data?.filteredGraphData].map((d: any) => {
     d["formattedDate"] =
       data.timeframe === "7day"

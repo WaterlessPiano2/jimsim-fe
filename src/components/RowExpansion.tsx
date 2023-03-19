@@ -9,9 +9,6 @@ interface Props {
 }
 
 const RowExpansion = ({ data, timeFrame }: Props) => {
-  console.log(
-    "re rendersr?-----------------------------------------------------------"
-  );
   const [plot1, setPlot1] = useState("tokena_amount");
   const [plot2, setPlot2] = useState("tokenb_amount");
 

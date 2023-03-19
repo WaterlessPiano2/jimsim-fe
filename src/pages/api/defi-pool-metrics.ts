@@ -13,17 +13,7 @@ if (req.query.graphtimeframe ){
     try{
 
       data = await prisma.defi_pool_metrics_ui_7day_view.findMany({
-        select: {
-          pool_account:true,
-          tvl:true,
-        staked_tvl:true,
-        tokena_amount:true,
-        tokenb_amount:true,
-        lp_volatility:true,
-        dd_pcnt:true,
-        sharpe_ratio:true,
-        txn_time:true,
-      },orderBy:{txn_time:'asc'}
+orderBy:{txn_time:'asc'}
     })
   
 if(!data || data.length <1){
@@ -41,17 +31,7 @@ if(!data || data.length <1){
     try{
 
       data = await prisma.defi_pool_metrics_ui_24h_view.findMany({
-        select: {
-          pool_account:true,
-          tvl:true,
-          staked_tvl:true,
-        tokena_amount:true,
-        tokenb_amount:true,
-        lp_volatility:true,
-        dd_pcnt:true,
-        sharpe_ratio:true,
-        txn_time:true,
-      },orderBy:{txn_time:'asc'}
+orderBy:{txn_time:'asc'}
     })
 
     if(!data || data.length <1){

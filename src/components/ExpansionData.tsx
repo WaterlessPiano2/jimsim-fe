@@ -105,14 +105,10 @@ const ExpansionData = ({
           "%"
         )}
         tooltipFour="Fee APY"
-        // keyOne={`returns_${timeScale}`}
-        // keyTwo={`market_${timeScale}`}
-        // keyThree={`total_fee_${timeScale}`}
-        // keyFour={`fee_apy_${timeScale}`}
-        keyOne={``}
-        keyTwo={``}
-        keyThree={``}
-        keyFour={``}
+        keyOne={`returns_${timeScale}`}
+        keyTwo={`market_${timeScale}`}
+        keyThree={`total_fee_${timeScale}`}
+        keyFour={`fee_apy_${timeScale}`}
         selectedOne={selectedOne}
         setSelectedOne={setSelectedOne}
       />
@@ -306,6 +302,7 @@ const Datacell = ({
 }: cellProps) => {
   const clicked = () => {
     if (!isDisabled() && dataKey) {
+     // console.log(dataKey);
       setSelectedOne(dataKey);
     }
   };
@@ -317,8 +314,13 @@ const Datacell = ({
 
   const cellConditionalStyles = () => {
     let style: any = { opacity: 1 };
-
+    if (selectedOne === "returns_7day") {
+      //  console.log(selectedOne );
+      // console.log(dataKey);
+    }
     if (selectedOne === dataKey) {
+      // console.log(dataKey);
+      // console.log("circle me");
       style["borderWidth"] = "3px";
       style["borderColor"] = "green";
     }
