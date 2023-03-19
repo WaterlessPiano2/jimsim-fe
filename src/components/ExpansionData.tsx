@@ -293,27 +293,38 @@ const Datacell = ({
   selectedOne,
   setSelectedOne,
 }: cellProps) => {
-  const clicked = (value: string, key: string) => {
-    if (!isDisabled(value) && key) {
-      setSelectedOne(key);
+  const clicked = () => {
+    if (!isDisabled() && dataKey) {
+      setSelectedOne(dataKey);
     }
   };
 
-  const isDisabled = (value: string) => {
-    if (!value || value === "No Data") return true;
+  const isDisabled = () => {
+    if (!value || value === "No Data" || !dataKey) return true;
     return false;
+  };
+
+  const cellConditionalStyles = () => {
+    let style: any = { opacity: 1 };
+
+    if (selectedOne === dataKey) {
+      style["borderWidth"] = "3px";
+      style["borderColor"] = "green";
+    }
+    if (isDisabled()) {
+      style["cursor"] = "not-allowed";
+    } else {
+      style["cursor"] = "pointer";
+    }
+    return style;
   };
 
   return (
     //pass selectedOne here and if it matches the key, make it selected
     <div
-      style={
-        selectedOne === dataKey
-          ? { borderWidth: "3px", borderColor: "green" }
-          : {}
-      }
+      style={cellConditionalStyles()}
       className={styles.expansionDataCellContainer}
-      onClick={() => clicked(value, dataKey)}
+      onClick={() => clicked()}
     >
       <div className={styles.expansionDataTooltip} style={{ marginTop: 70 }}>
         {tooltip}
