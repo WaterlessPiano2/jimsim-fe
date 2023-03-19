@@ -6,7 +6,6 @@ import GraphCell from "./GraphCell";
 import RowExpansion from "./RowExpansion";
 import Image from "next/image";
 import { displayData, formatter } from "@/utils/utils";
-import Toggle from "./Toggle";
 
 interface Props {
   defiPoolMetrics: any;
@@ -142,10 +141,9 @@ function Table({
     prepareRow,
     state: { expanded },
   } = useTable(
-    { initialState, columns, data: mainTableData },
+    { initialState, columns, data: mainTableData, autoResetExpanded: false },
     useExpanded // Use the useExpanded plugin hook
   );
-  console.log(123);
   return (
     <div className={styles.main}>
       <table {...getTableProps()} className={styles.table}>
@@ -225,7 +223,10 @@ function Table({
                   })}
                 </tr>
                 {row.isExpanded && (
-                  <RowExpansion data={row.original.expansionData} />
+                  <RowExpansion
+                    data={row.original.expansionData}
+                    timeFrame={timeframe}
+                  />
                 )}
               </>
             );

@@ -12,10 +12,16 @@ interface Props {
   setSelectedOne: (value: string) => void;
   setSelectedTwo: (value: string) => void;
   selectedTwo: string;
+  timeFrame: string;
 }
 
-const ExpansionData = ({ data, setSelectedOne, selectedOne }: Props) => {
-  const timeScale = "7day";
+const ExpansionData = ({
+  data,
+  setSelectedOne,
+  selectedOne,
+  timeFrame,
+}: Props) => {
+  const timeScale = timeFrame;
   return (
     <div className={styles.expansionData}>
       <DataRow

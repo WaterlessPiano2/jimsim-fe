@@ -16,7 +16,7 @@ interface props {
   plot2: string;
 }
 const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
-  console.log("plot1: ", data);
+  // console.log("plot1: ", data);
   // console.log(data.filteredGraphData);
 
   const formattedValues = [...data?.filteredGraphData].map((d: any) => {

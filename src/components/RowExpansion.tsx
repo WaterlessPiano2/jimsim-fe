@@ -5,9 +5,13 @@ import ExpansionGraph from "./ExpansionGraph";
 
 interface Props {
   data: any;
+  timeFrame: string;
 }
 
-const RowExpansion = ({ data }: Props) => {
+const RowExpansion = ({ data, timeFrame }: Props) => {
+  console.log(
+    "re rendersr?-----------------------------------------------------------"
+  );
   const [plot1, setPlot1] = useState("tokena_amount");
   const [plot2, setPlot2] = useState("tokenb_amount");
 
@@ -21,6 +25,7 @@ const RowExpansion = ({ data }: Props) => {
             selectedTwo={plot2}
             setSelectedOne={(n) => setPlot1(n)}
             setSelectedTwo={() => setPlot2}
+            timeFrame={timeFrame}
           />
           <ExpansionGraph data={data} plot1={plot1} plot2={plot2} />
         </div>
