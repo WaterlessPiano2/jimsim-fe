@@ -16,19 +16,14 @@ interface props {
   plot2: string;
 }
 const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
-  // console.log("plot1: ", data);
-  // console.log(data.filteredGraphData);
+  console.log("plot1: ", plot1);
+  console.log(data.filteredGraphData);
 
   const formattedValues = [...data?.filteredGraphData].map((d: any) => {
     d["formattedDate"] =
       data.timeframe === "7day"
         ? new Date(d.txn_time).getDate()
         : new Date(d.txn_time).getUTCHours();
-
-    d["formatted-tokena_amount"] = formatter.format(d?.tokena_amount);
-    d["formatted-tokena_amount"] = formatter.format(d?.tokenB_amount);
-    d["formatted-tvl"] = formatter.format(d?.tvl);
-    d["formatted-staked_tvl"] = formatter.format(d?.staked_tvl);
 
     return d;
   });
@@ -48,7 +43,10 @@ const ExpansionGraph = ({ data, plot1, plot2 }: props) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="formattedDate"
-          label={{ value: "time", position: "top" }}
+          label={{
+            value: `${data.timeframe === "7day" ? "days" : "hours"}`,
+            position: "top",
+          }}
           angle={45}
         />
         <YAxis dx={20} yAxisId={plot1} />

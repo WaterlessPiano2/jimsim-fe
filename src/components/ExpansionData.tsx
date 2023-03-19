@@ -56,7 +56,12 @@ const ExpansionData = ({
         tooltipTwo="Amount of token A"
         tooltipThree="Amount of token B"
         headingFour="STAKED TVL"
-        valueFour="No Data"
+        valueFour={displayData(
+          data?.tvl,
+          `$${formatter.format(data?.[`staked_tvl_${timeScale}`])}`,
+          "$",
+          ""
+        )}
         tooltipFour="Staked total value locked"
         keyOne="tvl"
         keyTwo="tokena_amount"
@@ -79,7 +84,7 @@ const ExpansionData = ({
         )}
         valueTwo={displayData(
           data?.market_7day,
-          `${(parseFloat(data?.market_7day) || 0).toFixed(2)}%`,
+          `${(parseFloat(data[`market_${timeScale}`]) || 0).toFixed(2)}%`,
           "",
           "%"
         )} // asked for an update on 7d - 7 day
