@@ -31,7 +31,7 @@ export default function Home({
   });
 
   const toggle = () => {
-    // setTimeFrame(timeframe === "24h" ? "7day" : "24h");
+    setTimeFrame(timeframe === "24h" ? "7day" : "24h");
   };
 
   return (

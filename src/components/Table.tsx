@@ -35,8 +35,10 @@ function Table({
             (t: any) => t?.pool_account === row?.pool_account
           );
         }
+
         row["filteredGraphData"] = filteredGraphData;
         row["timeframe"] = timeframe;
+
         return {
           platform: {
             name: row?.pool_name,
@@ -68,7 +70,7 @@ function Table({
           expansionData: row,
         };
       }),
-    []
+    [timeframe]
   );
 
   const columns = React.useMemo(
@@ -143,6 +145,7 @@ function Table({
     { initialState, columns, data: mainTableData },
     useExpanded // Use the useExpanded plugin hook
   );
+  console.log(123);
   return (
     <div className={styles.main}>
       <table {...getTableProps()} className={styles.table}>

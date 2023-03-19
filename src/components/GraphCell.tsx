@@ -14,15 +14,13 @@ const GraphCell = ({ data }: props) => {
       return "#FF0000";
     } else return "#4CBB17";
   };
-  
+
   return (
     <LineChart
-      width={90}
-      height={60}
+      width={80}
+      height={50}
       margin={{
-        top: 5,
-        right: 1,
-        left: 1,
+        top: 20,
       }}
       data={data}
     >
